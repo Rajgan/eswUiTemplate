@@ -1,0 +1,130 @@
+// HEADER ------------------------------------/
+.navbar-default {
+  background: $color-header-bg;
+  border: none;
+  border-bottom: 1px solid $border-line;
+  margin: 0 0 0 0;
+  padding: 0px 10px 0px 10px;
+  margin-bottom:-2px;
+  border-radius: 0;
+
+  .navbar-brand,
+  .navbar-brand:focus {
+    background: $color-header-logobg;
+    color: $color-header-logo;
+    margin: 0 0 0 0;
+    padding: 10px 10px 10px 10px;
+  }
+
+  &.border-shadow-down {
+    -webkit-box-shadow: 0px 5px 4px -1px $esw-border-gradient;
+    -moz-box-shadow: 0px 5px 4px -1px $esw-border-gradient;
+    box-shadow: 0px 5px 4px -1px $esw-border-gradient;
+  }
+
+  .navbar-brand:hover {
+    background-color: $color-header-logobg;
+  }
+
+  ul.main-nav {
+    font-size: 18px;
+
+    li {
+      margin: 0 10px;
+      a {
+        border-bottom: 4px solid $color-header-bg;
+        padding-bottom: 13px;
+      }
+      &.active a {
+        background-color: $color-header-bg;
+        border-bottom-color: $color-header-selectedlink;
+      }
+    }
+  }
+  .navbar-left {
+    padding: 0 20px 0 0;
+    margin: 0;
+  }
+  .navbar-right {
+    padding: 0 20px 0 0;
+    margin: 0;
+  }
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+  color: $color-header-text;
+  background: none;
+
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+  color: $color-header-text;
+  background: none;
+}
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: $color-header-tabhover;
+}
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover{
+  background-color:$color-header-tabopen;
+  color: $color-header-text;
+}
+
+#navbar-icon {
+  width: 150px;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: 15px 15px;
+  background-image: url("../assets/eshopworld_white.svg");
+}
+
+.breadcrumb-top {
+  margin-top:50px;
+}
+.breadcrumb-top {
+    margin-top: 0!important;
+  }
+@media only screen and (max-width: 970px) {
+
+}
+@media only screen and (max-width: 767px) {
+
+  .navbar-brand {
+    width: 100% !important;
+    background-size: 20% !important;
+    background-position-x:center!important;
+  }
+  .navbar-nav{
+    margin:0 0 0 0;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .navbar-brand {
+    background-size:25% !important;
+  }
+}
+@media screen and (max-width: 768px) and (orientation: portrait) {
+
+}
+@media only screen and (max-width: 550px) {
+  .navbar-brand {
+    background-size:30% !important;
+  }
+}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 450px) {
+  .navbar-brand {
+    background-size: 40% !important;
+  }
+}
+@media only screen and (max-width: 310px) {
+  .navbar-brand {
+    background-size: 50% !important;
+  }
+}

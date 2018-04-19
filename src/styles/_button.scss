@@ -1,0 +1,137 @@
+// BUTTONS -----------------------------------/
+.btn {
+  font-weight: 700;
+  min-width:80px;
+  &.btn-primary {
+    background: $brand-primary;
+    border-color: $brand-primary;
+    &:hover {
+      background: darken($brand-primary, 10%);
+    }
+    &.dropdown-toggle {
+      background: darken($brand-primary, 5%);
+    }
+  }
+  &.btn-default {
+    background: darken($background, 2%);
+    border-color: $border-line;
+    color: $theme-main;
+    &:hover {
+      background: darken($background, 10%);
+      color: darken($theme-main, 10%);
+    }
+    &.dropdown-toggle {
+      background: darken($background, 5%);
+    }
+  }
+  &.btn-autosize {
+    min-width:auto!important;
+  }
+  &.btn-outlined {
+    background: white;
+    border-color: $brand-primary;
+    color: darken($brand-primary, 5%);
+    &:hover {
+      background: darken($background, 1%);
+      color: darken($brand-primary, 10%);
+    }
+  }
+  &.btn-sm {
+    min-width:auto;
+    font-size: 14px;
+    padding: 2px 8px;
+  }
+
+  &.btn-secondary {
+    &:hover{
+      background: darken($text-lighter, 1%);
+    }
+  }
+}
+button,
+.btn {
+  &:focus {
+    outline: none;
+  }
+}
+.btn-advanced {
+  float: left;
+  width: 100%;
+  border: 0;
+  background: none;
+  text-align: center;
+  position: relative;
+  span {
+    position: relative;
+    z-index: 99;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 200px;
+    margin-left: -100px;
+    background: white;
+    top: 0;
+    left: 50%;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    height: 15px;
+    border-bottom: 3px solid $border-line;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  span {
+    .fa {
+      transition: transform 0.35s ease;
+    }
+    &.caret-open .fa {
+      transform: rotate(-180deg);
+    }
+  }
+}
+.dropdown-menu {
+  li {
+    hr{
+      margin: 0 0 0 0;
+    }
+    a {
+      padding-top:10px;padding-bottom:10px;
+    }
+  }
+}
+.btn-margin-sm {
+  margin: 5px;
+}
+.btn-margin-md {
+  margin: 10px;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: white;
+  border: none;
+  font-size:16px;
+  color: $brand-primary;
+  border-radius: 50%;
+  min-width:auto;
+  .fa-circle {
+    display: none;
+  }
+  &:hover {
+    .fa-circle {
+      display: inline-block;
+    }
+    .fa-circle-thin {
+      display: none;
+    }
+    .fa-plus {
+      color: white;
+    }
+  }
+}

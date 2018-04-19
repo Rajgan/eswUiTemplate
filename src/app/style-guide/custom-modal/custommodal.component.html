@@ -1,0 +1,35 @@
+<!-- Add Country Zone Modal-->
+<div id="customModal" bsModal #customModal="bs-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="modal-title">Add New Zone</h2>
+                <div class="form-group">
+                    <label>ZONE NAME</label>
+                    <input type="text" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group has-error">
+                    <label>ZONE DESCRIPTION</label>
+                    <textarea class="form-control " rows="3" placeholder="Description"></textarea>
+                    <span class="help-block pull-right">This is an input error</span>
+                </div>
+                <div class="form-group">
+                    <label>COUNTRY CODE</label>
+                    <select class="form-control">
+                        <option value="1">Sample 1</option>
+                        <option value="2">Sample 1</option>
+                    </select>
+                </div>
+                <div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  Sample of form error summary
+                </div>
+                <div class="modal-buttons text-right">
+                    <button type="button" class="btn btn-primary" (click)="addClick()">Add</button> &nbsp; &nbsp;
+                    <button type="button" class="btn btn-default" (click)="closeClick()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

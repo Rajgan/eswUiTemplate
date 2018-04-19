@@ -1,0 +1,33 @@
+.breadcrumb-top {
+  width: 100%;
+  float:left;
+  background: $color-breadcrumb-bg;
+  border-bottom: 1px solid $border-line;
+  margin-top: 50px!important;
+  ul.breadcrumb {
+    background: none;
+    margin: 12px 0;
+    padding: 0;
+    font-size: 18px;
+    li {
+      color: $color-breadcrumb-text;
+      a {
+        color: $color-breadcrumb-text;
+      }
+      &.active {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.breadcrumb > li + li:before {
+  padding: 0 8px;
+  color: $color-breadcrumb-text;
+  content: "\00BB";
+}
+@media only screen and (max-width: 990px) {
+  .breadcrumb-top {
+    margin-top:0!important;
+  }
+}

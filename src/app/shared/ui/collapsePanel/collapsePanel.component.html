@@ -1,0 +1,15 @@
+
+<div class="panel panel-default panel-theme">
+  <div class="panel-heading hover" (click)="CollapseClick()">
+    {{panelTitle}}
+    <div class="pull-right">
+      <i class="fa" [ngClass]="{'fa-caret-down': isCollapsed,'fa-caret-up': !isCollapsed}"></i>
+    </div>
+  </div>
+  <div class="panel-body" [hidden]="isCollapsed">
+    <p>
+      <ng-content>
+      </ng-content>
+    </p>
+  </div>
+</div>

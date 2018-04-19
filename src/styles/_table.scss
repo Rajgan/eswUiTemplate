@@ -1,0 +1,251 @@
+// PANELS -----------------------------------/
+table.es-table {   width:100%; margin: 20px 0;  border-spacing: 0px 6px; border-collapse: separate;
+
+  th {
+    font-size:12px; font-weight: 700; color:$text-light; text-transform: uppercase; padding: 5px 20px;
+    i{margin-left:5px}
+    a{color:$text-light}
+    a:hover{cursor:pointer}
+  }
+
+  td {
+    padding: 8px 20px;
+    border-top: 1px solid $border-line;
+    border-bottom: 1px solid $border-line;
+    margin:3px 0;
+    line-height:1.1;
+    position:relative;
+    background:$white;
+    &:first-of-type {
+      &:before {
+        content: '';
+        position: absolute;
+        background:white;
+        left: 0;
+        top: -1px;
+        width: 5px;
+        height: calc(100% + 2px);
+        border-bottom: 1px solid $border-line;
+        border-top: 1px solid $border-line;
+        border-left: 5px solid $border-line;
+        -webkit-transition: left 100ms; /* For Safari 3.1 to 6.0 */
+        transition: left 100ms;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 0px;
+        height: calc(100% + 2px);
+        border-left: 5px solid $border-line;
+        -webkit-transition: left 100ms; /* For Safari 3.1 to 6.0 */
+        transition: left 100ms;
+      }
+     }
+    &:last-of-type {
+      border-right: none;
+      &:before {
+        content: '';
+        position: absolute;
+        background:white;
+        right: 0;
+        top: -1px;
+        width: 20px;
+        height: calc(100% + 2px);
+        border-right: 1px solid $border-line;
+        border-bottom: 1px solid $border-line;
+        border-top: 1px solid $border-line;
+        -webkit-border-top-right-radius: 3px;
+        -webkit-border-bottom-right-radius: 3px;
+        -moz-border-radius-topright: 3px;
+        -moz-border-radius-bottomright: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        -webkit-transition: right 100ms; /* For Safari 3.1 to 6.0 */
+        transition: right 100ms;
+      }
+    }
+  }
+  .td-xxs{max-width:95px;width:95px}
+  .td-xs{max-width:110px;width:110px;word-break:break-all}
+  .td-sm{max-width:155px;word-break:break-all;width:155px}
+  .td-md{max-width:200px;width:200px}
+  .td-lg{max-width:250px;width:250px}
+  .td-list{max-width:170px;width:170px}
+
+  tr:hover {
+    color:$black;
+    td {
+        border-color:darken($border-line,15%);
+        &:first-of-type {
+          &:before {
+            border-color:darken($border-line,15%);
+          }
+         }
+        &:last-of-type {
+          &:before {
+            border-color:darken($border-line,15%);
+          }
+        }
+    }
+    .badge-secondary{background-color:$theme-main}
+
+/*
+      -webkit-box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.26);
+      -moz-box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.26);
+      box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.26);
+*/
+
+    td:first-of-type:before {
+      left: -20px;
+      width: 20px;
+      -webkit-transition: left 100ms; /* For Safari 3.1 to 6.0 */
+      transition: left 100ms;
+    }
+    td:first-of-type:after {
+      left: -20px;
+      -webkit-transition: left 100ms; /* For Safari 3.1 to 6.0 */
+      transition: left 100ms;
+    }
+    td:last-of-type:before {
+      right: -20px;
+      width: 20px;
+      -webkit-transition: right 100ms; /* For Safari 3.1 to 6.0 */
+      transition: right 100ms;
+    }
+
+    .btn-default {background:$brand-primary; border-color:$brand-primary; color: white;
+      &:hover {background:darken($brand-primary,10%);}
+      &.dropdown-toggle {background:darken($brand-primary,5%);}
+    }
+
+  }
+  tr.no-hover {
+    box-shadow: none ;
+  }
+
+  .status { font-weight:700; font-size: 12px; }
+  tr.status-active {
+    .status {color:$brand-success;}
+    td:first-of-type {
+      &:after { border-left-color: $brand-success; }
+    }
+  }
+  tr.status-inactive {
+    .status {color:$brand-danger;}
+    td:first-of-type {
+      &:after { border-left-color: $brand-danger; }
+    }
+  }
+}
+
+.table-footer {margin:10px 0;}
+
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+    table.es-table {
+      td.td-actions { border-right: 1px solid $border-line;
+        &:before {
+          display:none;
+        }
+
+      }
+    }
+}
+
+/* Large Devices, Desktops */
+@media only screen and (min-width : 1200px) {
+  .td-actions{min-width:120px}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 1200px) {
+  .td-actions{min-width:100px}
+    .container-fluid {padding:0 30px;}
+
+      table.es-table {border-spacing: 0px 4px;
+        th {padding: 5px 8px;
+          &:first-of-type {padding-left:15px;}
+        }
+        td {
+          font-size:14px;
+          padding: 8px;
+          &:first-of-type {padding-left:15px;}
+        }
+      }
+
+}
+
+@media only screen and (max-width : 1024px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 990px) {
+
+  .td-actions{min-width:65px}
+  table.es-table {border-spacing: 0px 4px;
+
+    tr:hover {
+
+      td:first-of-type:before {
+        left: 0;
+        width: 10px;
+      }
+      td:first-of-type:after {
+        left: 0;
+      }
+      td:last-of-type:before {
+        right: 0;
+        width: 10px;
+      }
+    }
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .td-actions{width:80px}
+  table.es-table {
+    th {padding:0 1px 0 1px!important}
+  }
+}
+
+// Slight modifications to bootstrap for additional responsive support.
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}

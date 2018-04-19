@@ -1,0 +1,13 @@
+<div class="breadcrumb-top">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-xs-12">
+              <ul class="breadcrumb">
+                  <li *ngFor="let crumb of Breadcrumbs; let i = index" [ngClass]="{'active' : i == Breadcrumbs.length-1 }" >
+                      <a routerLink="{{crumb.value}}"> {{crumb.key}} </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>

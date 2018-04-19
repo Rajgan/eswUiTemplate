@@ -1,0 +1,94 @@
+import { GenericModalComponent, ModalStyle } from './../../ui/genericmodal/genericmodal.component';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+import { GenericModalService } from './genericmodal.service';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+describe('GenericModalService', () => {
+    let httpClient: HttpClient;
+    let httpTestingController: HttpTestingController;
+    let genericModalService: GenericModalService;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule,
+                TestModule,
+                ModalModule.forRoot()
+            ],
+            providers: [
+                GenericModalService,
+                BsModalService
+            ],
+        });
+
+        httpClient = TestBed.get(HttpClient);
+        httpTestingController = TestBed.get(HttpTestingController);
+        genericModalService = TestBed.get(GenericModalService);
+    });
+
+    afterEach(() => {
+        // After every test, assert that there are no more pending requests.
+        httpTestingController.verify();
+    });
+
+    it('should be created', inject([GenericModalService], (service: GenericModalService) => {
+        expect(service).toBeTruthy();
+    }));
+
+    it('should clear ref for modalRef', () => {
+        genericModalService.ClearRef();
+        expect(genericModalService.modalRef).toBeNull();
+    });
+
+    it('should display Modal for showSuccess call', () => {
+        const title = 'Show Success';
+        const message = 'I am Testing Show Success';
+        genericModalService.showSuccess(title, message);
+        expect(genericModalService.modalRef.content.title).toEqual(title);
+        expect(genericModalService.modalRef.content.style).toEqual(ModalStyle.Success);
+        expect(genericModalService.modalRef.content.message).toEqual(message);
+    });
+
+    it('should display Modal for showInfo call', () => {
+        const title = 'Show Info';
+        const message = 'I am Testing Show Info';
+        genericModalService.showInfo(title, message);
+        expect(genericModalService.modalRef.content.title).toEqual(title);
+        expect(genericModalService.modalRef.content.message).toEqual(message);
+    });
+
+    it('should display Modal for showError call', () => {
+        const title = 'Show Error';
+        const message = 'I am Testing Show Error';
+        genericModalService.showError(title, message);
+        expect(genericModalService.modalRef.content.title).toEqual(title);
+        expect(genericModalService.modalRef.content.message).toEqual(message);
+    });
+
+    it('should display Modal for showWarning call', () => {
+        const title = 'Show Warning';
+        const message = 'I am Testing Show Warning';
+        genericModalService.showWarning(title, message);
+        expect(genericModalService.modalRef.content.title).toEqual(title);
+        expect(genericModalService.modalRef.content.message).toEqual(message);
+    });
+
+});
+
+
+
+@NgModule({
+    imports: [CommonModule],
+    declarations: [GenericModalComponent],
+    entryComponents: [
+        GenericModalComponent,
+    ]
+})
+class TestModule {}
+
+

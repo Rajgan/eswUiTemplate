@@ -1,0 +1,19 @@
+@import "_vars.scss";
+
+.bs-datepicker {
+    .bs-datepicker-head {
+      background-color:$color-header-bg;
+      color:$color-header-text;
+    }
+
+}
+.theme-green .bs-datepicker-body table td.week span {
+  color:$color-header-logo;
+}
+.theme-green .bs-datepicker-body table td span.selected,
+.theme-green .bs-datepicker-body table td.selected span,
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after
+{
+  background-color:$color-header-bg;
+}

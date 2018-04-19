@@ -1,0 +1,715 @@
+<!-- NOTE: This page is deliberately coded to english and has no translation implementation -->
+<h1 class="pagetitle"> Style Guide </h1>
+
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+    <!-- Headings Section -->
+    <h1 class="title">Headers</h1>
+    <div>
+      <h1 class="brand-red">h1 - Lorem ipsum dolor</h1>
+      <h2>h2 - Lorem ipsum dolor</h2>
+      <h3>h3 - Lorem ipsum dolor</h3>
+    </div>
+    <!-- End Headings Section -->
+
+    <!-- Paragraph Section -->
+    <h1 class="title">Paragraphs</h1>
+    <div>
+      <p>
+        Etiam vel metus urna. Ut velit purus, auctor at feugiat ac, luctus in eros. Vivamus neque odio, vehicula
+        in lectus vel, tempus lobortis urna. Aliquam ac ante in odio dignissim porttitor a et tellus. Fusce tincidunt
+        eu eros fermentum eleifend. Suspendisse interdum at nibh et suscipit. Pellentesque tincidunt mi elit, vitae auctor
+        purus tincidunt eget. Quisque congue dolor mollis, molestie elit convallis, iaculis sapien. Cras maximus orci et
+        enim tempus, porttitor rutrum tortor gravida. Morbi tempor nisi mauris, quis pellentesque massa eleifend quis. Cras
+        gravida elit ac nunc pretium accumsan. Sed sit amet lorem non neque scelerisque malesuada eget at lacus.
+      </p>
+    </div>
+    <!-- End Paragraph Section -->
+  </div>
+  <div class="col-sm-12 col-md-6">
+
+    <!-- Buttons Section -->
+    <h1 class="title">Buttons</h1>
+    <div>
+      <button class="btn btn-default" (click)="showSpinnerClick()">Default</button> <small> - click to view loading spinner (2 second threshold)</small>
+      <div class="margin-top-md">
+        <button class="btn btn-primary">Primary</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-outlined">Outlined</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-secondary">Secondary</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-warning">Warning</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-danger">Danger</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-success">Success</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-secondary" (click)="showModalClick()">Modal</button> <small> - click to view generic modal </small>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-secondary" (click)="showCustomModalClick()">Custom Modal</button> <small> - click to view cutom implemented modal </small>
+      </div>
+      <div class="margin-top-md">
+        <esw-custommodal #customModal></esw-custommodal>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-primary btn-sm">Small</button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn-circle">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-circle-thin fa-stack-2x"></i>
+            <i class="fa fa-plus fa-stack-1x"></i>
+          </span>
+        </button>
+      </div>
+      <div class="margin-top-md">
+        <button class="btn btn-md btn-warning">
+          <span class="glyphicon glyphicon-refresh spinning margin-right-sm"></span> Loading...
+        </button>
+      </div>
+    </div>
+    <!-- End Buttons Section -->
+  </div>
+</div>
+
+
+
+
+
+<!-- Inputs Section -->
+<h1 class="title">Inputs</h1>
+<div>
+    <div class="form-group">
+      <label>INPUT TEXT</label>
+      <input name="txtExample1" placeholder="Placeholder Text" id="txtExample1" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>INPUT DECIMAL NUMBER</label>
+      <input eswDecimalInput name="txtExample2" id="txtExample2" class="form-control" min="0" placeholder="0.0" step="0.1" type="number" maxlength="6" />
+    </div>
+    <div class="form-group">
+      <label>INPUT NUMBER ONLY</label>
+      <input eswNumericField name="txtExample3" id="txtExample3" class="form-control" min="0" placeholder="0" type="number" maxlength="6" />
+    </div>
+</div>
+<!-- End Inputs Section -->
+
+<!-- Dropdown Section -->
+<h1 class="title">Dropdown buttons</h1>
+<div>
+    <div class="dropdown" eswDropdown>
+      <a eswDropdownToggle class="dropdown-toggle btn btn-primary" role="button" aria-haspopup="true" aria-expanded="false">
+          Language <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li role="menuitem"><a > English <i class="fa fa-check pull-right margin-top-xs"></i></a></li>
+        <li role="menuitem"><a >German</a></li>
+      </ul>
+    </div>
+</div>
+<!-- End Dropdown Section -->
+
+<!-- Panel Section -->
+<h1 class="title">Panels</h1>
+<div class="panel">
+  <div class="panel-body">
+    Etiam vel metus urna. Ut velit purus, auctor at feugiat ac, luctus in eros. Vivamus neque odio, vehicula
+    in lectus vel, tempus lobortis urna. Aliquam ac ante in odio dignissim porttitor a et tellus. Fusce tincidunt
+    eu eros fermentum eleifend. Suspendisse interdum at nibh et suscipit. Pellentesque tincidunt mi elit, vitae
+    auctor purus tincidunt eget. Quisque congue dolor mollis, molestie elit convallis, iaculis sapien. Cras maximus
+    orci et enim tempus, porttitor rutrum tortor gravida. Morbi tempor nisi mauris, quis pellentesque massa eleifend
+    quis. Cras gravida elit ac nunc pretium accumsan. Sed sit amet lorem non neque scelerisque malesuada eget at lacus.
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <p>
+      Etiam vel metus urna. Ut velit purus, auctor at feugiat ac, luctus in eros. Vivamus neque odio, vehicula
+      in lectus vel, tempus lobortis urna. Aliquam ac ante in odio dignissim porttitor a et tellus. Fusce tincidunt
+      eu eros fermentum eleifend. Suspendisse interdum at nibh et suscipit. Pellentesque tincidunt mi elit, vitae
+      auctor purus tincidunt eget. Quisque congue dolor mollis, molestie elit convallis, iaculis sapien. Cras maximus
+      orci et enim tempus, porttitor rutrum tortor gravida. Morbi tempor nisi mauris, quis pellentesque massa eleifend
+      quis. Cras gravida elit ac nunc pretium accumsan. Sed sit amet lorem non neque scelerisque malesuada eget at lacus.
+    </p>
+  </div>
+</div>
+<div class="panel panel-default panel-theme">
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <p>
+      Etiam vel metus urna. Ut velit purus, auctor at feugiat ac, luctus in eros. Vivamus neque odio, vehicula
+      in lectus vel, tempus lobortis urna. Aliquam ac ante in odio dignissim porttitor a et tellus. Fusce tincidunt
+      eu eros fermentum eleifend. Suspendisse interdum at nibh et suscipit. Pellentesque tincidunt mi elit, vitae
+      auctor purus tincidunt eget. Quisque congue dolor mollis, molestie elit convallis, iaculis sapien. Cras maximus
+      orci et enim tempus, porttitor rutrum tortor gravida. Morbi tempor nisi mauris, quis pellentesque massa eleifend
+      quis. Cras gravida elit ac nunc pretium accumsan. Sed sit amet lorem non neque scelerisque malesuada eget at lacus.
+    </p>
+  </div>
+</div>
+<eswCollapsePanel [panelTitle]="'Collapse Panel'">
+  Etiam vel metus urna. Ut velit purus, auctor at feugiat ac, luctus in eros. Vivamus neque odio, vehicula
+  in lectus vel, tempus lobortis urna. Aliquam ac ante in odio dignissim porttitor a et tellus. Fusce tincidunt
+  eu eros fermentum eleifend. Suspendisse interdum at nibh et suscipit. Pellentesque tincidunt mi elit, vitae
+  auctor purus tincidunt eget. Quisque congue dolor mollis, molestie elit convallis, iaculis sapien. Cras maximus
+  orci et enim tempus, porttitor rutrum tortor gravida. Morbi tempor nisi mauris, quis pellentesque massa eleifend
+  quis. Cras gravida elit ac nunc pretium accumsan. Sed sit amet lorem non neque scelerisque malesuada eget at lacus.
+</eswCollapsePanel>
+<!-- End Panel Section -->
+
+<!-- Date Picker Secton -->
+<h1 class="title"> Date Picker</h1>
+<div>
+  <div class="row">
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+      <input
+        placeholder="Datepicker" class="form-control" #dp="bsDatepicker" bsDatepicker>
+    </div>
+    <div class="col-xs-12 col-12 col-md-3 form-group">
+      <button class="btn btn-primary" (click)="dp.toggle()">Date Picker</button>
+    </div>
+  </div>
+</div>
+<!-- End Date Picker Section-->
+
+<!-- Table Filter Section -->
+<h1 class="title">Table Filter</h1>
+<div>
+  <div class="panel margin-top-lg">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-xs-12 col-xs-5ths">
+          <div class="form-group">
+            <label>Brand</label>
+            <select class="form-control">
+              <option selected value="null"> All </option>
+              <option value="1">Example 1</option>
+              <option value="2">Example 2</option>
+            </select>
+          </div>
+        </div> <!-- /col -->
+        <div class="col-xs-12 col-xs-5ths">
+          <div class="form-group">
+            <label>Service Type</label>
+            <select class="form-control">
+              <option selected value="null"> All </option>
+              <option value="1">Example 1</option>
+              <option value="2">Example 2</option>
+            </select>
+          </div>
+        </div> <!-- /col -->
+        <div class="col-xs-12 col-xs-5ths">
+          <div class="form-group">
+            <label>Origin</label>
+            <select class="form-control">
+              <option selected value="null"> All </option>
+              <option value="1">Example 1</option>
+              <option value="2">Example 2</option>
+            </select>
+          </div>
+        </div> <!-- /col -->
+        <div class="col-xs-12 col-xs-5ths">
+          <div class="form-group">
+            <label>Destination</label>
+            <select class="form-control">
+              <option selected value="null"> All </option>
+              <option value="1">Example 1</option>
+              <option value="2">Example 2</option>
+            </select>
+          </div>
+        </div> <!-- /col -->
+        <div class="col-xs-12 col-xs-5ths">
+          <div class="form-group">
+            <label>Ranking</label>
+            <select class="form-control">
+              <option selected value="null"> All </option>
+              <option value="1">Example 1</option>
+              <option value="2">Example 2</option>
+            </select>
+          </div>
+        </div> <!-- /col -->
+
+      </div>
+
+      <!-- Advanced search filters -->
+      <div>
+        <!-- Access filters button -->
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn-advanced" (click)="ShowAdvanced=!ShowAdvanced" type="button" data-toggle="collapse" data-target="#collapseAdvanced" aria-expanded="false" aria-controls="collapseAdvanced">
+              <span><i class="fa" [ngClass]="{'fa-caret-down': !ShowAdvanced,'fa-caret-up': ShowAdvanced}"></i> &nbsp; Advanced Filters</span>
+            </button>
+          </div>
+        </div>
+        <div [ngClass]="{'collapse': !ShowAdvanced}" id="collapseAdvanced">
+          <div class="row">
+            <div class="col-xs-12 col-xs-3">
+              <div class="split-right first-col">
+                <div class="form-group">
+                  <label>ESTIMATED DELIVERY (DAYS)</label>
+                  <div class="select-wrap-group">
+                    <div class="select-wrap">
+                      <label>From</label>
+                      <select class="form-control">
+                        <option selected value="null"> All </option>
+                        <option value="1">Example 1</option>
+                        <option value="2">Example 2</option>
+                      </select>
+                    </div>
+                    <div class="select-wrap">
+                      <label>To</label>
+                      <select class="form-control" >
+                        <option selected value="null"> All </option>
+                        <option value="1">Example 1</option>
+                        <option value="2">Example 2</option>
+                      </select>
+                    </div> <!-- /select-wrap -->
+                  </div> <!-- /select-wrap-group -->
+                </div>
+                <div class="form-group">
+                  <label>WEIGHT (KG)</label>
+                  <div class="select-wrap-group">
+                    <div class="select-wrap">
+                      <label>From</label>
+                      <select class="form-control">
+                        <option selected value="null"> All </option>
+                        <option value="1">Example 1</option>
+                        <option value="2">Example 2</option>
+                      </select>
+                    </div>
+                    <div class="select-wrap">
+                      <label>To</label>
+                      <select class="form-control">
+                        <option selected value="null"> All </option>
+                        <option value="1">Example 1</option>
+                        <option value="2">Example 2</option>
+                      </select>
+                    </div> <!-- /select-wrap -->
+                  </div> <!-- /select-wrap-group -->
+                </div>
+              </div> <!-- /split-right -->
+              <div class="form-group">
+                  <label>VALUE OF GOODS</label>
+                  <input class="form-control" eswDecimalInput min="0" placeholder="0.0" step="0.1" type="number" maxlength="6">
+                  <span class="help-block">This field has an error.</span>
+                </div>
+            </div>
+              <div class="col-xs-12 col-xs-3">
+                <div class="split-right">
+                  <div class="form-group">
+                    <label>COUNTRY ZONE</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        <select class="form-control btn-beside" disabled>
+                            <option selected value="null"> All </option>
+                            <option value="1">Example 1</option>
+                            <option value="2">Example 2</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-2 nopadleft">
+                      <button class="btn-circle">
+                        <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-circle-thin fa-stack-2x"></i>
+                          <i class="fa fa-plus fa-stack-1x"></i>
+                        </span>
+                      </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>COLLECTION / PICKUP</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        <select class="form-control">
+                          <option selected value="null"> All </option>
+                          <option value="true">Yes</option>
+                          <option value="false">No</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>SIGN ON DELIVERY?</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        <select class="form-control">
+                          <option selected value="null"> All </option>
+                          <option value="true">Yes</option>
+                          <option value="false">No</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label>INSURANCE</label>
+                      <div class="row">
+                        <div class="col-xs-10">
+                          <select class="form-control">
+                            <option selected value="null"> All </option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                          </select>
+                        </div>
+                    </div>
+                  </div>
+
+                </div> <!-- /split-right -->
+              </div> <!-- /col -->
+              <div class="col-xs-12 col-xs-3">
+                <div class="split-right">
+                  <div class="form-group">
+                    <label>HUB</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                          <select class="form-control">
+                            <option selected value="null"> All </option>
+                            <option value="1">Example 1</option>
+                            <option value="2">Example 2</option>
+                          </select>
+                      </div>
+                      <div class="col-xs-2 nopadleft">
+                      <button class="btn-circle">
+                        <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-circle-thin fa-stack-2x"></i>
+                          <i class="fa fa-plus fa-stack-1x"></i>
+                        </span>
+                      </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>FIRST MILE CARRIER</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                      <select class="form-control">
+                        <option selected value="null"> All </option>
+                        <option value="1">Example 1</option>
+                        <option value="2">Example 2</option>
+                      </select>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label>LAST MILE CARRIER</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        <select class="form-control">
+                          <option selected value="null"> All </option>
+                          <option value="1">Example 1</option>
+                          <option value="2">Example 2</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>INCOTERM</label>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        <select class="form-control">
+                          <option selected value="null"> All </option>
+                          <option value="1">Example 1</option>
+                          <option value="2">Example 2</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- /split-right -->
+              </div> <!-- /col -->
+              <div class="col-xs-12 col-xs-3">
+                <div class="split-right last-col">
+                  <div class="form-group">
+                    <label>CURRENCY</label>
+                    <select class="form-control">
+                      <option selected value="null"> All </option>
+                      <option value="1">Example 1</option>
+                      <option value="2">Example 2</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>CASH ON DELIVERY</label>
+                    <select class="form-control">
+                      <option selected value="null"> All </option>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>ACTIVE</label>
+                    <select class="form-control">
+                      <option selected value="null"> All </option>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  </div>
+                </div> <!-- /split-right -->
+              </div> <!-- /col -->
+          </div><!-- /row -->
+        </div><!-- /collapse -->
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- End Table Filter Section -->
+
+<!-- Action Table Section -->
+<h1 class="title">Active Table</h1>
+<div>
+  <div class="row" id="searchGrid">
+    <div class="col-xs-12">
+      <table class="es-table">
+        <tr valign="top" class="no-hover es-table-header">
+          <th><a href="javascript:;">ID<i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+          <th class="td-xxs"><a href="jacascript:;">BRAND<i class="fa fa-sort-asc" aria-hidden="true"></i></a></th>
+          <th class="td-sm hidden-xs">SERVICE TYPE</th>
+          <th class="hidden-xs">ORIGIN</th>
+          <th class="td-sm hidden-xs">DESTINATION</th>
+          <th class="hidden-xs">RANK</th>
+          <th class="td-sm">CURRENCY</th>
+          <th class="hidden-xs hidden-sm hidden-md">HUB</th>
+          <th class="hidden-xs hidden-sm td-list">OTHER</th>
+          <th class="td-actions"><span class="hidden-xs hidden-sm">ACTIONS</span></th>
+        </tr>
+        <tr class="status-active" >
+          <td>12345<br />
+              <span class="status st-success">ACTIVE</span>
+          </td>
+          <td class="hidden-xs">Brand Name Ex</td>
+          <td>Service Type Name Ex</td>
+          <td class="hidden-xs">Origin Zone Name Ex</td>
+          <td class="hidden-xs">Destination Zone Name Ex</td>
+          <td class="hidden-xs">Rule Rank Ex</td>
+          <td>Currency Description Ex</td>
+          <td class="hidden-xs hidden-sm hidden-md">Hub Name Ex</td>
+          <td class="hidden-xs hidden-sm td-list">
+            <span class="badge badge-secondary">Pickup Available</span>
+            <span class="badge badge-secondary">Sign on Delivery</span>
+          </td>
+          <td class="td-actions">
+            <div class="btn-group">
+              <div class="dropdown pull-left" eswDropdown>
+                <button  data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-sm btn-default hidden-xs hidden-sm">View</button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="javascript:;">View Route</a></li>
+                  <li role="menuitem"><a href="javascript:;">Edit Route</a></li>
+                </ul>
+              </div>
+              <div class="dropdown pull-left" eswDropdown>
+                <button eswDropdownToggle role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-sm btn-default dropdown-toggle" ><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="javascript:;">View Route</a></li>
+                  <li role="menuitem"><a href="javascript:;">Edit Route</a></li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="status-inactive" >
+          <td>12345<br />
+              <span class="status st-success">ACTIVE</span>
+          </td>
+          <td class="hidden-xs">Brand Name Ex</td>
+          <td>Service Type Name Ex</td>
+          <td class="hidden-xs">Origin Zone Name Ex</td>
+          <td class="hidden-xs">Destination Zone Name Ex</td>
+          <td class="hidden-xs">Rule Rank Ex</td>
+          <td>Currency Description Ex</td>
+          <td class="hidden-xs hidden-sm hidden-md">Hub Name Ex</td>
+          <td class="hidden-xs hidden-sm td-list">
+            <span class="badge badge-secondary">Pickup Available</span>
+            <span class="badge badge-secondary">Sign on Delivery</span>
+          </td>
+          <td class="td-actions">
+            <div class="btn-group">
+              <div class="dropdown pull-left" eswDropdown>
+                <button  data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-sm btn-default hidden-xs hidden-sm">View</button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="javascript:;">View Route</a></li>
+                  <li role="menuitem"><a href="javascript:;">Edit Route</a></li>
+                </ul>
+              </div>
+              <div class="dropdown pull-left" eswDropdown>
+                <button eswDropdownToggle role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-sm btn-default dropdown-toggle" ><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="javascript:;">View Route</a></li>
+                  <li role="menuitem"><a href="javascript:;">Edit Route</a></li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>12345<br />
+              <span class="status st-success">NONE</span>
+          </td>
+          <td class="hidden-xs">Brand Name Ex</td>
+          <td>Service Type Name Ex</td>
+          <td class="hidden-xs">Origin Zone Name Ex</td>
+          <td class="hidden-xs">Destination Zone Name Ex</td>
+          <td class="hidden-xs">Rule Rank Ex</td>
+          <td>Currency Description Ex</td>
+          <td class="hidden-xs hidden-sm hidden-md">Hub Name Ex</td>
+          <td class="hidden-xs hidden-sm td-list">
+            <span class="badge badge-secondary">Pickup Available</span>
+            <span class="badge badge-secondary">Sign on Delivery</span>
+          </td>
+          <td class="td-actions">
+            <div class="btn-group">
+              <div class="dropdown pull-left" >
+                <button  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-sm btn-default hidden-xs hidden-sm">View</button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="javascript:;">View Route</a></li>
+                  <li role="menuitem"><a href="javascript:;">Edit Route</a></li>
+                </ul>
+              </div>
+              <div class="dropdown pull-left" eswDropdown>
+                <button eswDropdownToggle type="button" class="btn btn-sm btn-default dropdown-toggle" ><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="javascript:;">View Route</a></li>
+                  <li role="menuitem"><a href="javascript:;">Edit Route</a></li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!--<tr class="no-hover">
+            <th class="text-center pad-top-sm" colspan="16">No Results Found</th>
+        </tr>-->
+      </table>
+    </div><!-- /col -->
+  </div><!-- /row -->
+
+  <div class="row" >
+    <div class="col-xs-12">
+        <h6 class="table-footer text-right">
+          <strong>1 - 5 </strong> of <strong>10</strong> &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-default btn-autosize btn-sm" [disabled]><i class="fa fa-chevron-left"></i></button> &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-default btn-autosize btn-sm"><i class="fa fa-chevron-right"></i></button>
+        </h6>
+    </div>
+  </div><!-- /row -->
+</div>
+<!-- End Action Table -->
+
+<!-- Table with Action Section -->
+<h1 class="title">Action Table</h1>
+<div>
+  <table class="table">
+    <thead>
+        <tr>
+          <th>Row</th>
+          <th>Bill</th>
+          <th>Payment Date</th>
+          <th>Payment Status</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Credit Card</td>
+        <td>04/07/2014</td>
+        <td>Call in to confirm</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Credit Card</td>
+        <td>04/07/2014</td>
+        <td>Call in to confirm</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr class="active">
+        <td>3</td>
+        <td>Credit Card</td>
+        <td>04/07/2014</td>
+        <td>Call in to confirm</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr class="success">
+        <td>4</td>
+        <td>Water</td>
+        <td>01/07/2014</td>
+        <td>Paid</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr class="info">
+        <td>5</td>
+        <td>Internet</td>
+        <td>05/07/2014</td>
+        <td>Change plan</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr class="warning">
+        <td>6</td>
+        <td>Electricity</td>
+        <td>03/07/2014</td>
+        <td>Pending</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr class="danger">
+        <td>7</td>
+        <td>Telephone</td>
+        <td>06/07/2014</td>
+        <td>Due</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> </button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- End Table with Action Section -->
+
+<br />
+<p>This theme is an extension of bootstrap v3.3.7, all bootstrap styles are applicable on this site. Find more bootstrap specific styles <a href="http://getbootstrap.com/docs/3.3/components/" target="_blank">here</a></p>
+<br><br>

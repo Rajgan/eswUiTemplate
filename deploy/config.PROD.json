@@ -1,0 +1,10 @@
+{
+  "uiHostUrl": "http://<UPDATE_WHEN_WE_HAVE_BUILD_PIPELINE>/",
+  "uiApiUrl": "http://<UPDATE_WHEN_WE_HAVE_BUILD_PIPELINE>/",
+  "envName": "Prod",
+  "version": ".0.0.1",
+  "showBreadcrumb": true,
+  "loglevel": "debug",
+  "telemetryEnabled": true,
+  "telemetryInstrumentationKey": "e5bcfbcd-bcfd-4614-b460-fbe14f66a1f4"
+}

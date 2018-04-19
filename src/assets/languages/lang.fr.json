@@ -1,0 +1,34 @@
+{
+  "header": {
+    "account": {
+      "title": "Mon compte",
+      "styleguide": "Guide de style",
+      "preferences": "Préférences",
+      "logoff": "Déconnexion"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright"
+  },
+  "preferences": {
+    "title": "Préférences",
+    "chooselanguage": "Choisir la langue"
+  },
+  "breadcrumb": {
+    "home": "Accueil",
+    "styleguide": "Guide de style",
+    "preferences": "Préférences",
+    "404": "404 Pas trouvé",
+    "403": "Non autorisé"
+  },
+  "errors":{
+    "403": { "title": "Non implémenté", "text": "Cette fonctionnalité n'est pas implémentée actuellement!" },
+    "404": { "title": "404 Pas trouvé", "text": "Oops!  Nous n'avons pas trouvé la ressource que vous cherchez!" },
+    "unauthorized": { "title": "Non autorisé", "text": "Vous n'êtes pas autorisé à voir cette ressource." }
+  },
+  "language": {
+    "en": "Anglais",
+    "de": "Allemand",
+    "fr": "Français"
+  }
+}

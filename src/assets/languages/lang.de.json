@@ -1,0 +1,34 @@
+{
+  "header": {
+    "account": {
+      "title": "Mein Konto",
+      "styleguide": "Stil Guide",
+      "preferences": "Einstellungen",
+      "logoff": "Abmelden"
+    }
+  },
+  "footer": {
+    "copyright": "Urheberrecht"
+  },
+  "preferences": {
+    "title": "Einstellungen",
+    "chooselanguage": "Sprache wählen"
+  },
+  "breadcrumb": {
+    "home": "Startseite",
+    "styleguide": "Stil Guide",
+    "preferences": "Einstellungen",
+    "404": "404 Not Found",
+    "403": "Nicht autorisiert"
+  },
+  "errors":{
+    "notimplemented": { "title": "Nicht implementiert", "text": "Diese Funktionalität ist derzeit nicht implementiert!" },
+    "404": { "title": "404 Not Found", "text": "Hoppla!  Wir konnten die gesuchte Ressource nicht finden!" },
+    "403": { "title": "Nicht autorisiert", "text": "Sie sind nicht berechtigt, diese Ressource anzuzeigen." }
+  },
+  "language": {
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch"
+  }
+}

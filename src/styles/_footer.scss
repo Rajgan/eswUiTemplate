@@ -1,0 +1,12 @@
+.main-footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top:60px;
+  background-color: $color-footer-bg;
+  border-top:1px solid $text-verylight;
+  padding: 0.8em;
+  &.bottom {
+    position: absolute;
+  }
+}

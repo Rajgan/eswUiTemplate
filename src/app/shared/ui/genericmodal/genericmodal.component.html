@@ -1,0 +1,25 @@
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12"><h2 class="modal-title">{{title}}</h2></div>
+    </div>
+    <div class="row">
+        <div *ngIf="type != 4" class="col-xs-1 col-md-1 col-lg-1">
+            <div *ngIf="style == 0"><i class="result-icon fa fa-check brand-success pad-left-lg pad-top-xs"></i></div>
+            <div *ngIf="style == 1"><i class="result-icon fa fa-remove brand-error pad-left-lg pad-top-xs"></i></div>
+            <div *ngIf="style == 2"><i class="result-icon fa fa-warning brand-warning pad-left-lg pad-top-xs"></i></div>
+            <div *ngIf="style == 3"><i class="result-icon fa fa-question brand-info pad-left-lg pad-top-xs"></i></div>
+        </div>
+        <div class="col-xs-10 col-md-10 col-lg-10 result-msg" [innerHTML]="message"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <p class="modal-buttons">
+            <button type="button" *ngIf="type == 1 || type == 3" (click)="OkClick()" class="btn btn-primary">OK</button>
+            <button type="button" *ngIf="type == 2" (click)="OkClick()" class="btn btn-primary">Yes</button>
+            <button type="button" *ngIf="type == 0" (click)="OkClick()" class="btn btn-default">Close</button>
+            <button type="button" *ngIf="type == 1" (click)="CancelClick()" class="btn btn-default">Cancel</button>
+            <button type="button" *ngIf="type == 2" (click)="CancelClick()" class="btn btn-default">No</button>
+            </p>
+        </div>
+    </div>
+</div>

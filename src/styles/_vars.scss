@@ -1,0 +1,34 @@
+@import "_colors";
+
+$font-stack: 'Source Sans Pro', sans-serif;
+
+$theme-main: $text-darkest;
+
+$radius:            8px;
+
+// App header
+$color-header-bg: $theme-main;
+$color-header-tabhover: $text-darkest-offset;
+$color-header-tabopen:$text-dark-offset;
+$color-header-logobg: none;
+$color-header-logo: $brand-red;
+$color-header-selectedlink: $brand-red;
+$color-header-text: $white;
+$color-header-tabbg: $brand-red;
+
+// App breadcrumb
+$color-breadcrumb-bg: darken($background, 2%);
+$color-breadcrumb-text: $theme-main;
+
+// App body
+$color-body-bg: $background;
+$color-text-body:$theme-main;
+$color-text-title:$brand-red;
+$color-link:$brand-red;
+$color-link-highlight:$brand-red;
+$color-link-active:$brand-red;
+
+// App footer
+$color-footer-bg: $white;
+
+

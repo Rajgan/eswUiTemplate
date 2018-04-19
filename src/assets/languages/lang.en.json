@@ -1,0 +1,34 @@
+{
+  "header": {
+    "account": {
+      "title": "My Account",
+      "styleguide": "Style Guide",
+      "preferences": "Preferences",
+      "logoff": "Log Off"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "chooselanguage": "Choose language"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "styleguide": "Style Guide",
+    "preferences": "Preferences",
+    "404": "404 Not Found",
+    "403": "Unauthorised"
+  },
+  "errors":{
+    "notimplemented": { "title": "Not Implemented", "text": "This functionality is not currently implemented!" },
+    "404": { "title": "404 Not Found", "text": "Oops!  We could not find the resource you're looking for!" },
+    "403": { "title": "Unauthorised", "text": "You are not authorized to view this resource." }
+  },
+  "language": {
+    "en": "English",
+    "de": "German",
+    "fr": "French"
+  }
+}
