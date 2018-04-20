@@ -30,12 +30,9 @@
     font-size: 18px;
 
     li {
-<<<<<<< HEAD
       margin-right:0;
       margin-left:0;
-=======
-      margin: 0 10px;
->>>>>>> 42492bd584a09ab8f6c7ba4095842d5e02da296c
+
       a {
         border-bottom: 4px solid $color-header-bg;
         padding-bottom: 13px;
@@ -108,7 +105,7 @@
   .navbar-nav{
     margin:0 0 0 0;
   }
-<<<<<<< HEAD
+
   .dropdown-menu, .dropdown-menu > a {
     font-size:17px;
     text-align: left;
@@ -131,8 +128,7 @@
       background-color:darken($theme-main, 10%);;
     }
   }
-=======
->>>>>>> 42492bd584a09ab8f6c7ba4095842d5e02da296c
+
 }
 @media only screen and (max-width: 650px) {
   .navbar-brand {
