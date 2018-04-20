@@ -18,10 +18,17 @@
         {{ 'header.account.title' | translate }} <span class="caret"></span>
       </a>
       <ul class="dropdown-menu" role="menu">
+<<<<<<< HEAD
+        <li class="pad-top-md pad-bot-md margin-left-md"> <i class="fa fa-user-circle margin-right-xs"></i> Welcome, {{name}} </li>
+        <li class="pad-left-md pad-right-md"><hr /></li>
+        <li role="menuitem"><a [routerLink]="['/preferences']"> <i class="fa fa-cog margin-right-xs"></i> {{ 'header.account.preferences' | translate }} </a></li>
+        <li role="menuitem"><a href="javascript:;" (click)="logout()"> <i class="fa fa-sign-out margin-right-xs"></i> {{ 'header.account.logoff' | translate }} </a></li>
+=======
         <li class="text-center pad-top-md pad-bot-md"> Welcome, {{name}} </li>
         <li class="pad-left-md pad-right-md"><hr /></li>
         <li role="menuitem"><a [routerLink]="['/preferences']"> {{ 'header.account.preferences' | translate }} </a></li>
         <li role="menuitem"><a href="javascript:;" (click)="logout()"> {{ 'header.account.logoff' | translate }} </a></li>
+>>>>>>> 42492bd584a09ab8f6c7ba4095842d5e02da296c
       </ul>
     </li>
   </ul>
