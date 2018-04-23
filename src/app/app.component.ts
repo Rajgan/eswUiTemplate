@@ -4,6 +4,7 @@ import { GenericModalService } from './shared/services/gernericmodal/genericmoda
 import { ModalType, ModalStyle } from './shared/ui/genericmodal/genericmodal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { LoggerService } from './shared/services/logger/logger.service';
+import { ConfigService } from './shared/services/configservice/config.service';
 
 @Component({
   selector: 'esw-root',
@@ -11,8 +12,9 @@ import { LoggerService } from './shared/services/logger/logger.service';
 })
 export class AppComponent {
   title = 'app';
+  showBreadcrumb = false;
 
-  public constructor(private translateService: TranslateService, private logger: LoggerService) {
+  public constructor(private translateService: TranslateService, private configuration: ConfigService, private logger: LoggerService) {
 
     logger.logDebug('THIS IS A ROB LOG TEST');
 
@@ -33,7 +35,7 @@ export class AppComponent {
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translateService.use(browserLang.match(/en|de/) ? browserLang : 'en');
-
+    this.showBreadcrumb = configuration.SHOW_BREADCUMB;
   }
 
   get currentLang() {
