@@ -55,9 +55,9 @@ export class AuthenticationModule {
 
   private getSecurityConfig(configService: ConfigService) {
     const openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
-    openIDImplicitFlowConfiguration.stsServer = configService.STS_AUTH_URL;
+    openIDImplicitFlowConfiguration.stsServer = configService.STS_AUTH_URL.url;
 
-    openIDImplicitFlowConfiguration.redirect_url = configService.UI_HOST_URL;
+    openIDImplicitFlowConfiguration.redirect_url = configService.UI_HOST_URL.url;
     // // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified
     // // by the iss (issuer) Claim as an audience.
     // // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional
@@ -65,7 +65,7 @@ export class AuthenticationModule {
     openIDImplicitFlowConfiguration.client_id = 'esw.logistics.shippingrates.ui.spa';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid logistics.shippingcalculator.api.all profile';
-    openIDImplicitFlowConfiguration.post_logout_redirect_uri = configService.UI_HOST_URL;
+    openIDImplicitFlowConfiguration.post_logout_redirect_uri = configService.UI_HOST_URL.url;
     openIDImplicitFlowConfiguration.start_checksession = true;
     openIDImplicitFlowConfiguration.silent_renew = true;
     openIDImplicitFlowConfiguration.post_login_route = '/';

@@ -1,9 +1,9 @@
 import { LogLevel } from '../app/shared/services/logger/LogLevel';
 
 export const environment = {
-  uiHostUrl: '#{uiHostUrlPROD}',
-  uiApiUrl: '#{uiApiUrlPROD}',
-  stsAuthUrl: '#{stsAuthUrlPROD}',
+  uiHostUrl: { url: '#{uiHostUrlPROD}' },
+  uiApiUrl: { url: '#{uiApiUrlPROD}', isAuthenticated: true },
+  stsAuthUrl: { url: '#{stsAuthUrlPROD}', isAuthenticated: true },
   envName: '#{backendenvNameapiUrlPROD}',
   version: '#{versionPROD}',
   showBreadcrumb: Boolean('#{showBreadcrumbPROD}'),

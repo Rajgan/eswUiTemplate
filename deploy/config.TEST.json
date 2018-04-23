@@ -1,6 +1,7 @@
 {
   "uiHostUrl": "http://<UPDATE_WHEN_WE_HAVE_BUILD_PIPELINE>/",
   "uiApiUrl": "http://<UPDATE_WHEN_WE_HAVE_BUILD_PIPELINE>/",
+  "stsAuthUrl": "https://test-sts-security-esw.eshopworld.net:9202",
   "envName": "Test",
   "version": ".0.0.1",
   "showBreadcrumb": true,

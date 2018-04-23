@@ -7,7 +7,7 @@ import { LogLevel } from '../logger/LogLevel';
 @Injectable()
 export class ConfigService {
 
-    public get UI_API_URL(): string {
+    public get UI_API_URL(): any {
         return environment.uiApiUrl;
     }
     public get ENV_NAME(): string {
@@ -19,13 +19,10 @@ export class ConfigService {
     public get SHOW_BREADCUMB(): boolean {
         return environment.showBreadcrumb;
     }
-    public get STS_AUTH_URL(): string {
+    public get STS_AUTH_URL(): any {
       return environment.stsAuthUrl;
     }
-    public AUTH_URL(): string {
-      return environment.stsAuthUrl;
-    }
-    public get UI_HOST_URL(): string {
+    public get UI_HOST_URL(): any {
       return environment.uiHostUrl;
     }
     public get LOGLEVEL(): LogLevel {
@@ -36,5 +33,10 @@ export class ConfigService {
     }
     public get TELEMETRY_INTERNAL_INSTRUMENTATIONKEY(): string {
       return environment.Logging.Telemetry.InstrumentationKey;
+    }
+
+
+    public AUTH_URL(): string {
+      return environment.stsAuthUrl.url;
     }
 }
