@@ -16,9 +16,9 @@ import { CommonModule } from '@angular/common';
       @Optional() @SkipSelf() parentModule: ApplicationInsightsModule,
       appInsightsService: AppInsightsService
     ) {
-      if (!parentModule) {
+     /* if (!parentModule) {
           appInsightsService.init();
-      }
+      }*/
     }
 
     static forRoot(config: AppInsightsConfig): ModuleWithProviders {

@@ -44,10 +44,6 @@ export class BreadcrumbComponent {
   // Method for setting the array of routes (routename/path) used to determin the breadcrumbs.
   private setRoutes(routeUrl: string): void {
 
-    // If we dont have a url passed, then dont set the breadcrumbs.
-    if (!routeUrl || routeUrl.length === 0) {
-      this.Breadcrumbs = null;
-    }
     const routeMatch = this.router;
 
     // Split the url into parts, e.g. "/route.search" will be spit into: "" and "route.search".  The first "" will be
@@ -97,13 +93,6 @@ export class BreadcrumbComponent {
 
     // Breadcrumbs is the array of crumbs.
     this.Breadcrumbs = crumbs;
-  }
-
-  // Helper method to capitalise a string that's passed in (first letter of each word capitalised).
-  private capitalise (str: string ): string {
-    return str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-      return letter.toUpperCase();
-    });
   }
 
   private isNumber(obj): boolean {

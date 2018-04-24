@@ -26,4 +26,9 @@ describe('Component: PreferencesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should test language change', () => {
+    component.languageChanged('en');
+    expect(component.currentLangTranslated).toBe('en');
+  });
 });

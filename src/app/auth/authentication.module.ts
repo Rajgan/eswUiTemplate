@@ -30,7 +30,7 @@ import { UserProfileService } from './userprofile.service';
     {
       provide: APP_INITIALIZER,
       useFactory: (oidcConfigService: OidcConfigService, configService: ConfigService ) => (
-        () => oidcConfigService.load_using_stsServer(configService.AUTH_URL())),
+        () => { if (oidcConfigService != null) { oidcConfigService.load_using_stsServer(configService.AUTH_URL()); } }),
       deps: [OidcConfigService, ConfigService],
       multi: true
     }
@@ -43,21 +43,26 @@ export class AuthenticationModule {
               private configService: ConfigService,
               private oidcConfigService: OidcConfigService) {
 
-    this.oidcConfigService.onConfigurationLoaded.subscribe(() => this.setupAuthentication());
+    if (this.oidcConfigService != null) {
+      this.oidcConfigService.onConfigurationLoaded.subscribe(() => this.setupAuthentication());
+    }
+
   }
 
 
   private setupAuthentication() {
-    const authWellKnownEndpoints = new AuthWellKnownEndpoints();
-    authWellKnownEndpoints.setWellKnownEndpoints(this.oidcConfigService.wellKnownEndpoints);
-    this.oidcSecurityService.setupModule(this.getSecurityConfig(this.configService), authWellKnownEndpoints);
+    if (this.oidcConfigService != null && this.oidcConfigService.wellKnownEndpoints != null) {
+      const authWellKnownEndpoints = new AuthWellKnownEndpoints();
+      authWellKnownEndpoints.setWellKnownEndpoints(this.oidcConfigService.wellKnownEndpoints);
+      this.oidcSecurityService.setupModule(this.getSecurityConfig(this.configService), authWellKnownEndpoints);
+    }
   }
 
   private getSecurityConfig(configService: ConfigService) {
     const openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
-    openIDImplicitFlowConfiguration.stsServer = configService.STS_AUTH_URL.url;
+    openIDImplicitFlowConfiguration.stsServer = configService.STS_AUTH_URL;
 
-    openIDImplicitFlowConfiguration.redirect_url = configService.UI_HOST_URL.url;
+    openIDImplicitFlowConfiguration.redirect_url = configService.UI_HOST_URL;
     // // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified
     // // by the iss (issuer) Claim as an audience.
     // // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional
@@ -65,7 +70,7 @@ export class AuthenticationModule {
     openIDImplicitFlowConfiguration.client_id = 'esw.logistics.shippingrates.ui.spa';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid logistics.shippingcalculator.api.all profile';
-    openIDImplicitFlowConfiguration.post_logout_redirect_uri = configService.UI_HOST_URL.url;
+    openIDImplicitFlowConfiguration.post_logout_redirect_uri = configService.UI_HOST_URL;
     openIDImplicitFlowConfiguration.start_checksession = true;
     openIDImplicitFlowConfiguration.silent_renew = true;
     openIDImplicitFlowConfiguration.post_login_route = '/';

@@ -17,7 +17,16 @@ import { UserProfile } from './userprofile.model';
 @Injectable()
 export class UserProfileService {
 
-  public userProfile: UserProfile = null;
+  private _userprofile: UserProfile  = null;
+
+  public get userProfile(): UserProfile {
+    return this._userprofile;
+  }
+  public set userProfile(value) {
+    this._userprofile = value;
+    this._profileChange.next(value);
+  }
+
   public userRoles: Array<string> = [];
 
   private isAuthorizedSubscription: Subscription;
@@ -33,29 +42,22 @@ export class UserProfileService {
   constructor(
     private oidcSecurityService: OidcSecurityService) {
 
+    if (oidcSecurityService != null) {
 
       if (this.oidcSecurityService.moduleSetup) {
         this.doCallbackLogicIfRequired();
-    } else {
-        this.oidcSecurityService.onModuleSetup.subscribe(() =>      {
-            this.doCallbackLogicIfRequired();
-        });
+      } else {
+        this.oidcSecurityService.onModuleSetup.subscribe(() => this.doCallbackLogicIfRequired());
+      }
+
+      this.oidcSecurityService.onCheckSessionChanged.subscribe( (checksession: boolean) => checksession = checksession);
+
+      this.oidcSecurityService.onAuthorizationResult.subscribe((authorizationResult: AuthorizationResult) => {
+        this.onAuthorizationResultComplete(authorizationResult); });
+
+      this.isAuthorizedSubscription =
+        this.oidcSecurityService.getIsAuthorized().subscribe((isAuthorized: boolean) => isAuthorized = isAuthorized);
     }
-
-
-      this.oidcSecurityService.onCheckSessionChanged.subscribe( (checksession: boolean) => {
-        checksession = checksession;
-      });
-
-    this.oidcSecurityService.onAuthorizationResult.subscribe( (authorizationResult: AuthorizationResult) => {
-      this.onAuthorizationResultComplete(authorizationResult);
-    });
-
-
-    this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
-      (isAuthorized: boolean) => {
-          isAuthorized = isAuthorized;
-      });
 
     this.userLoggedOn = this._profileChange.asObservable();
   }
@@ -76,8 +78,6 @@ export class UserProfileService {
   }
 
   public hasRole(roleName: string): boolean {
-    console.log('Roles');
-    console.log(this.userRoles);
     return (this.userRoles.indexOf(roleName) > -1);
   }
 
@@ -102,15 +102,15 @@ export class UserProfileService {
 
       this.oidcSecurityService.getUserData().subscribe((info) => {
 
-        this.userProfile = new UserProfile();
-        this.userProfile.Email = info.preferred_username;
-        this.userProfile.FamilyName = info.family_name;
-        this.userProfile.GivenName = info.given_name;
-        this.userProfile.Name = info.name;
-        this.userProfile.Sub = info.sub;
-        this.userProfile.Language = localStorage.getItem('lang');
+        const user = new UserProfile();
+        user.Email = info.preferred_username;
+        user.FamilyName = info.family_name;
+        user.GivenName = info.given_name;
+        user.Name = info.name;
+        user.Sub = info.sub;
+        user.Language = localStorage.getItem('lang');
 
-        this._profileChange.next(this.userProfile);
+        this.userProfile = user;
       });
     }
   }

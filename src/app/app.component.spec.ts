@@ -10,7 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AuthenticationModule } from './auth/authentication.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-xdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let translateService: TranslateService;
@@ -68,5 +68,4 @@ xdescribe('AppComponent', () => {
   });
 
 });
-
 

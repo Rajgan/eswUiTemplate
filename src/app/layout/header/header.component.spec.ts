@@ -10,11 +10,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SharedUiModule } from '../../shared/ui/shared-ui.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserProfileService } from '../../auth/userprofile.service';
+import { UserProfile } from '../../auth/userprofile.model';
 
 describe('Component: HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let genericModalService: GenericModalService;
+  let userService: UserProfileService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,10 +38,12 @@ describe('Component: HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     genericModalService = fixture.debugElement.injector.get(GenericModalService);
+    userService = fixture.debugElement.injector.get(UserProfileService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
+
     expect(component).toBeTruthy();
   });
 
@@ -47,5 +51,29 @@ describe('Component: HeaderComponent', () => {
     spyOn(genericModalService, 'showWarning').and.callThrough();
     component.notImplementedModal();
     expect(genericModalService.showWarning).toHaveBeenCalledTimes(1);
+  });
+
+  it('should set user profile', () => {
+
+    const user = new UserProfile();
+    user.Email = 'test@Test.com';
+    user.FamilyName = 'test test';
+    user.GivenName = 'test';
+
+    userService.userProfile = user;
+
+    expect(userService.userProfile).toBeDefined();
+  });
+
+  it('should login', () => {
+    spyOn(userService, 'login').and.callFake(function() {});
+    component.login();
+    expect(userService.login).toHaveBeenCalledTimes(1);
+  });
+
+  it('should logout', () => {
+    spyOn(userService, 'logout').and.callFake(function() {});
+    component.logout();
+    expect(userService.logout).toHaveBeenCalledTimes(1);
   });
 });

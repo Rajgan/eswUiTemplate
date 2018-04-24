@@ -168,11 +168,16 @@ export class AppInsightsService implements IAppInsights {
     AppInsights.clearAuthenticatedUserContext();
   }
 
+  @LogError()
   public init(): void {
+
+    if (!this.appConfig.TELEMETRY_ENABLED) {
+      return;
+    }
 
     if (this.config) {
       if (this.config.instrumentationKey) {
-        try {
+
           AppInsights.downloadAndSetup(this.config);
 
           if (!this.config.overrideTrackPageMetrics) {
@@ -191,17 +196,13 @@ export class AppInsightsService implements IAppInsights {
           this.queue = AppInsights.queue;
           this.context = AppInsights.context;
           this.isInitialised = true;
-        } catch (ex) {
-          console.warn('Angular application insights Error [downloadAndSetup]: ', ex);
-        }
+
       } else {
         if (!this.config.instrumentationKeySetlater) {
           // there is no this.config.instrumentationKey AND no this.config.instrumentationKeySetlater => Add log.
           console.warn('An instrumentationKey value is required to initialize AppInsightsService');
         }
       }
-    } else {
-      console.warn('You need forRoot on ApplicationInsightsModule, with or instrumentationKeySetlater or instrumentationKey set at least');
     }
   }
 }
