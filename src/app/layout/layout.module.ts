@@ -9,7 +9,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule } from '@angular/router';
 import { createTranslateLoader } from '../shared/utils/translationLoader';
 import { UserProfileService } from '../auth/userprofile.service';
-import { SharedUiModule } from '../shared/ui/shared-ui.module';
 import { AuthVisibilityModule } from '../shared/ui/auth-visibility/auth-visibility.module';
 import { RoleVisibiltyModule } from '../shared/ui/role-visibility/role-visibility.module';
 

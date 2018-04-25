@@ -1,37 +1,43 @@
+import { AuthState, getIsLoggedIn } from './../../../auth/reducers/auth';
 import { ElementRef, Directive, OnInit } from '@angular/core';
-import { UserProfileService } from './../../../auth/userprofile.service';
 import { inherits } from 'util';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 @Directive({selector: '[eswAuthShow]'})
 export class AuthShowDirective implements OnInit {
 
-    constructor(readonly element: ElementRef, private userProfile: UserProfileService) { }
+    isLoggedIn$: Observable<boolean>;
+
+    constructor(readonly element: ElementRef,
+                private store: Store<AuthState>) {
+                    this.isLoggedIn$ = this.store.select(getIsLoggedIn);
+                 }
 
     ngOnInit() {
-        this.showHide();
-        this.userProfile.userLoggedOn.subscribe((newUser) => {
-            this.showHide();
-        });
-    }
-
-    private showHide(): void {
-        this.element.nativeElement.style.display = (this.userProfile.isAuthorized ? 'inline' : 'none');
+        this.isLoggedIn$.subscribe(
+            (isLoggedIn) => {
+                this.element.nativeElement.style.display = (isLoggedIn ? 'inline' : 'none');
+            }
+        );
     }
 }
 
 @Directive({selector: '[eswAuthHide]'})
 export class AuthHideDirective implements OnInit {
 
-    constructor(readonly element: ElementRef, private userProfile: UserProfileService) { }
+    isLoggedIn$: Observable<boolean>;
+
+    constructor(readonly element: ElementRef,
+                private store: Store<AuthState>) {
+                    this.isLoggedIn$ = this.store.select(getIsLoggedIn);
+                 }
 
     ngOnInit() {
-        this.showHide();
-        this.userProfile.userLoggedOn.subscribe((newUser) => {
-            this.showHide();
-        });
-    }
-
-    private showHide(): void {
-        this.element.nativeElement.style.display = (!this.userProfile.isAuthorized ? 'inline' : 'none');
+        this.isLoggedIn$.subscribe(
+            (isLoggedIn) => {
+                this.element.nativeElement.style.display = (!isLoggedIn ? 'inline' : 'none');
+            }
+        );
     }
 }

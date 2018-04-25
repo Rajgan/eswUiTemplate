@@ -5,6 +5,7 @@ import { LoggerService } from './logger/logger.service';
 import { GenericModalService } from './gernericmodal/genericmodal.service';
 import { ConfigService } from './configservice/config.service';
 import { ApplicationInsightsModule } from './appInsights/appInsights.module';
+import { AuthContext } from '../../auth/auth-context.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ApplicationInsightsModule } from './appInsights/appInsights.module';
     BsModalService,
     LoggerService,
     GenericModalService,
-    ConfigService
+    ConfigService,
+    AuthContext
   ],
   exports: []
 })
