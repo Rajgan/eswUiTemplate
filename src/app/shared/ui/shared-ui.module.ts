@@ -4,28 +4,30 @@ import { DecimalInputDirective } from './decimalinput/decimalinput.directive';
 import { NgbDropdownModule } from './dropdown/ngbdropdown.module';
 import { NgbDropdownToggle } from './dropdown/ngbdropdown.directive';
 import { GenericModalComponent } from './genericmodal/genericmodal.component';
-import { DecimalInputModule } from './decimalinput/decimalinput.module';
 import { CollapsePanelComponent } from './collapsePanel/collapsePanel.component';
 import { NumericFieldDirective } from './numeric-field/numeric-field.directive';
+import { RoleVisibilityDirective } from './role-visibility/role-visibility.directive';
+import { AuthHideDirective, AuthShowDirective } from './auth-visibility/auth-visibility.directive';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    NgbDropdownModule.forRoot(),
-    DecimalInputModule
+    NgbDropdownModule.forRoot()
   ],
   declarations: [
     GenericModalComponent,
     CollapsePanelComponent,
-    NumericFieldDirective
+    NumericFieldDirective,
+    DecimalInputDirective
   ],
   exports: [
     DecimalInputDirective,
     NgbDropdownModule,
     GenericModalComponent,
     CollapsePanelComponent,
-    NumericFieldDirective
+    NumericFieldDirective,
+    DecimalInputDirective
   ],
   entryComponents: [ GenericModalComponent ]
 })

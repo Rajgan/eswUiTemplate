@@ -4,8 +4,12 @@ import { Router } from '@angular/router';
 import { GenericModalService } from './../../shared/services/gernericmodal/genericmodal.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { TranslateService } from '@ngx-translate/core';
-import { UserProfileService } from '../../auth/userprofile.service';
 import { UserProfile } from '../../auth/userprofile.model';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../../auth/reducers/auth';
+import { Authorize, Logoff } from '../../auth/actions/auth';
+import { getUser } from '../../auth/reducers/auth';
+import { Observable } from 'rxjs/Observable';
 
 // Component that will contain the header html. Populates the <navigation></navigation> element.
 @Component({
@@ -19,15 +23,15 @@ export class HeaderComponent {
   public name: string = null;
   public router: Router;
 
+  user$: Observable<UserProfile>;
+
   public constructor(
-    private route: Router, private modalService: GenericModalService,
-    private translateService: TranslateService, private userProfileService: UserProfileService) {
+    private route: Router,
+    private modalService: GenericModalService,
+    private translateService: TranslateService,
+    private store: Store<AuthState>) {
     this.router = route;
-    userProfileService.userLoggedOn.subscribe((newProfile) => {
-      if (newProfile != null) {
-        this.name = newProfile.GivenName;
-      }
-    });
+    this.user$ = this.store.select(getUser);
   }
 
   public notImplementedModal() {
@@ -39,10 +43,10 @@ export class HeaderComponent {
   }
 
   public logout() {
-    this.userProfileService.logout();
+    this.store.dispatch(new Logoff());
   }
 
   public login() {
-    this.userProfileService.login();
+    this.store.dispatch(new Authorize());
   }
 }
