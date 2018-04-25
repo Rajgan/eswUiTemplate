@@ -1,20 +1,25 @@
-import { DebugElement, Component } from '@angular/core';
-import { UserProfileService } from '../../../auth/userprofile.service';
+import { Component, DebugElement, APP_INITIALIZER } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RoleVisibilityDirective } from './role-visibility.directive';
-import { ConfigService } from '../../services/configservice/config.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthModule } from 'angular-auth-oidc-client';
-import { UserProfile } from '../../../auth/userprofile.model';
 import { By } from '@angular/platform-browser';
+import { dispatchEvent, createEvent } from '../../testing/utils';
+import { UserProfileService } from '../../../auth/userprofile.service';
+import { UserProfile } from '../../../auth/userprofile.model';
+import { OidcSecurityService, OidcConfigService, AuthModule } from 'angular-auth-oidc-client';
+import { AuthInterceptor } from '../../../auth/auth-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConfigService } from '../../services/configservice/config.service';
+import { AuthorizationGuard } from '../../../auth/authorization.guard';
+import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RoleVisibiltyModule } from './role-visibility.module';
 
 
-describe('RoleVisibilityDirective', () => {
-  let userService: UserProfileService;
+describe('RoleShowHideDirective', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
-  let debugElement: DebugElement;
+  let userService: UserProfileService;
 
   beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -24,38 +29,54 @@ describe('RoleVisibilityDirective', () => {
           RouterTestingModule
         ],
         declarations: [ RoleVisibilityDirective, TestComponent ],
-        providers: [ UserProfileService, ConfigService ]
+        providers: [ UserProfileService, ConfigService, OidcSecurityService, OidcConfigService ]
       })
       .compileComponents();
-
-      fixture = TestBed.createComponent(TestComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-
-      userService = TestBed.get(UserProfileService);
-
-      debugElement =  fixture.debugElement.query(By.directive(RoleVisibilityDirective));
   }));
 
-  it('RoleShow is hidden, then shown', () => {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    userService = fixture.debugElement.injector.get(UserProfileService);
+  });
 
-    expect(debugElement).toBeTruthy();
 
-    fixture.detectChanges();
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Role visibility is hidden, then shown', () => {
+
     // check hidden
-    expect(debugElement.nativeElement.style.display).toBe('none');
+    let el = fixture.debugElement.query(By.css('input'));
+    expect(el.nativeElement.style.display).toBe('');
 
     // Set profile
+    let roles = new Array<string>();
+    roles.push('test');
+
+    userService.userRoles = roles;
     userService.userProfile = new UserProfile();
-    userService.userRoles = ['testRole'];
     fixture.detectChanges();
 
     // Check shown
-    expect(debugElement.nativeElement.style.display).toBe('inline');
+    el = fixture.debugElement.query(By.css('input'));
+    expect(el.nativeElement.style.display).toBe('inline');
+
+    roles = new Array<string>();
+
+    userService.userRoles = roles;
+    userService.userProfile = new UserProfile();
+    fixture.detectChanges();
+
+    // Check shown
+    el = fixture.debugElement.query(By.css('input'));
+    expect(el.nativeElement.style.display).toBe('none');
   });
 });
 
 @Component({
-  template: `<input eswRoleVisibility />`
+  template: `
+  <input eswRoleVisibility matchRole="test" />`
 })
 class TestComponent { }
