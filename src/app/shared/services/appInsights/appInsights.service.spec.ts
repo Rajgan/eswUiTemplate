@@ -3,10 +3,10 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AppInsightsService } from './appInsights.service';
-import { ConsoleSpy } from '../../testing/utils';
 import { ApplicationInsightsModule } from './appInsights.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { ConsoleSpy } from '../../testing/utils';
 
 describe('AppInsightsService', () => {
     let httpClient: HttpClient;
@@ -60,6 +60,9 @@ describe('AppInsightsService', () => {
       service.config = null;
       service.init();
       expect(service).toBeTruthy();
+      fakeConsole.log('');
+      fakeConsole.warn('');
+      fakeConsole.logs = null;
     }));
 
     it('should be created with instrumentation key', inject([AppInsightsService], (service: AppInsightsService) => {
@@ -67,24 +70,24 @@ describe('AppInsightsService', () => {
       service.config.instrumentationKeySetlater = false;
       service.config.overrideTrackPageMetrics = null;
       service.init();
-      router.navigate(['./']);
+      router.navigate(['/test']);
       expect(service).toBeTruthy();
       service.config.instrumentationKey = '';
       service.config.overrideTrackPageMetrics = true;
       service.init();
-      router.navigate(['./']);
+      router.navigate(['/test']);
       expect(service).toBeTruthy();
       service.config.instrumentationKey = '';
       service.config.overrideTrackPageMetrics = false;
       service.init();
-      router.navigate(['./']);
+      router.navigate(['/test']);
       expect(service).toBeTruthy();
     }));
 
     it('should be created without trackPageMetrics', inject([AppInsightsService], (service: AppInsightsService) => {
       service.config.overrideTrackPageMetrics = false;
       service.init();
-      router.navigate(['./']);
+      router.navigate(['/test']);
       expect(service).toBeTruthy();
     }));
 
