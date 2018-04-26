@@ -46,32 +46,33 @@ describe('RoleShowHideDirective', () => {
   });
 
   it('Role visibility is hidden, then shown', () => {
+    fixture.whenStable().then(() => {
+      // check hidden
+      let el = fixture.debugElement.query(By.css('input'));
+      expect(el.nativeElement.style.display).toBe('');
 
-    // check hidden
-    let el = fixture.debugElement.query(By.css('input'));
-    expect(el.nativeElement.style.display).toBe('');
+      // Set profile
+      let roles = new Array<string>();
+      roles.push('test');
 
-    // Set profile
-    let roles = new Array<string>();
-    roles.push('test');
+      userService.userRoles = roles;
+      userService.userProfile = new UserProfile();
+      fixture.detectChanges();
 
-    userService.userRoles = roles;
-    userService.userProfile = new UserProfile();
-    fixture.detectChanges();
+      // Check shown
+      el = fixture.debugElement.query(By.css('input'));
+      expect(el.nativeElement.style.display).toBe('inline');
 
-    // Check shown
-    el = fixture.debugElement.query(By.css('input'));
-    expect(el.nativeElement.style.display).toBe('inline');
+      roles = new Array<string>();
 
-    roles = new Array<string>();
+      userService.userRoles = roles;
+      userService.userProfile = new UserProfile();
+      fixture.detectChanges();
 
-    userService.userRoles = roles;
-    userService.userProfile = new UserProfile();
-    fixture.detectChanges();
-
-    // Check shown
-    el = fixture.debugElement.query(By.css('input'));
-    expect(el.nativeElement.style.display).toBe('none');
+      // Check shown
+      el = fixture.debugElement.query(By.css('input'));
+      expect(el.nativeElement.style.display).toBe('none');
+    });
   });
 });
 
