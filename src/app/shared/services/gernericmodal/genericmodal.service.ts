@@ -50,6 +50,18 @@ export class GenericModalService {
         }
     }
 
+    public DialogOk() {
+      if (this.modalRef != null) {
+        this.modalRef.content.OkClick();
+      }
+    }
+
+    public DialogCancel() {
+      if (this.modalRef != null) {
+        this.modalRef.content.CancelClick();
+      }
+    }
+
     public ClearRef() {
         this.modalRef = null;
     }
