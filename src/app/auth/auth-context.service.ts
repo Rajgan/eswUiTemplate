@@ -42,7 +42,7 @@ export class AuthContext {
   }
 
   public logIn() {
-    if (!this._isAuthenticated) {
+    if (!this.isAuthenticated) {
       this.oidcSecurityService.authorize();
     }
   }

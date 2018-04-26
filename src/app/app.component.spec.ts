@@ -10,8 +10,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestModule } from './shared/testing/testModule';
 import { TestAuthenticationModule } from './shared/testing/testAuthenticationModule';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -27,8 +25,7 @@ describe('AppComponent', () => {
         TestModule,
         ModalModule.forRoot(),
         TestAuthenticationModule,
-        RouterTestingModule
-        StoreModule.forRoot(reducers, { metaReducers })
+        RouterTestingModule,
       ],
       providers: [ Ng4LoadingSpinnerService, TranslateService ],
       declarations: [
