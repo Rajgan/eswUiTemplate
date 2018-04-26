@@ -1,6 +1,6 @@
 import { GenericModalComponent, ModalStyle, ModalType } from './../../ui/genericmodal/genericmodal.component';
-import { BsModalService, ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
-import { TestBed, inject, ComponentFixture } from '@angular/core/testing';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
@@ -12,8 +12,6 @@ describe('GenericModalService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
     let genericModalService: GenericModalService;
-    let component: GenericModalComponent;
-    let fixture: ComponentFixture<GenericModalComponent>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -28,8 +26,6 @@ describe('GenericModalService', () => {
             ],
         });
 
-        fixture = TestBed.createComponent(GenericModalComponent);
-        component = fixture.componentInstance;
         httpClient = TestBed.get(HttpClient);
         httpTestingController = TestBed.get(HttpTestingController);
         genericModalService = TestBed.get(GenericModalService);
@@ -52,7 +48,21 @@ describe('GenericModalService', () => {
     it('should display Modal dialog', () => {
       const title = 'Show Success';
       const message = 'I am Testing Show Success';
+      genericModalService.ClearRef();
       genericModalService.showDialog(title, message, ModalType.OkOnly, ModalStyle.Error, function() {}, function() { }, function() {});
+      genericModalService.DialogOk();
+      genericModalService.DialogOk();
+      genericModalService.showDialog(title, message, ModalType.OkOnly, ModalStyle.Error, function() {}, function() { }, function() {});
+      genericModalService.DialogCancel();
+
+      genericModalService.showDialog(title, message, ModalType.OkOnly, ModalStyle.Error);
+      genericModalService.DialogOk();
+      genericModalService.DialogOk();
+
+      genericModalService.showDialog(title, message, ModalType.OkOnly, ModalStyle.Error);
+      genericModalService.DialogCancel();
+      genericModalService.DialogCancel();
+
       genericModalService.showDialog(title, message, ModalType.OkOnly, ModalStyle.Error);
       expect(genericModalService.modalRef.content.title).toEqual(title);
       expect(genericModalService.modalRef.content.style).toEqual(ModalStyle.Error);
@@ -105,8 +115,7 @@ describe('GenericModalService', () => {
     declarations: [GenericModalComponent],
     entryComponents: [
         GenericModalComponent,
-    ],
-    providers:[BsModalRef]
+    ]
 })
 class TestModule {}
 
