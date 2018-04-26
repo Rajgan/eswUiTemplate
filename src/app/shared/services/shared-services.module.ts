@@ -18,9 +18,7 @@ import { ValuesService } from './values.service';
     BsModalService,
     LoggerService,
     GenericModalService,
-    
-    AuthContext
-    
+    AuthContext,
     ValuesService
   ],
   exports: []
