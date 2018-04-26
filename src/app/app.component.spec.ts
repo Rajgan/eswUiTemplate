@@ -9,6 +9,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AuthenticationModule } from './auth/authentication.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -24,7 +26,8 @@ describe('AppComponent', () => {
         HttpClientTestingModule,
         TranslateModule.forRoot(),
         ModalModule.forRoot(),
-        AuthenticationModule
+        AuthenticationModule,
+        StoreModule.forRoot(reducers, { metaReducers }),
       ],
       providers: [ Ng4LoadingSpinnerService, TranslateService ],
       declarations: [

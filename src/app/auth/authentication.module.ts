@@ -11,11 +11,18 @@ import {
 } from 'angular-auth-oidc-client';
 import { ConfigService } from './../shared/services/configservice/config.service';
 import { UserProfileService } from './userprofile.service';
+import { StoreModule } from '@ngrx/store';
+import { AuthReducerFeature } from './reducers/auth';
+import { reducer } from './reducers/auth';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './effects/auth.effects';
 
 @NgModule({
   declarations: [],
   imports: [
     AuthModule.forRoot(),
+    StoreModule.forFeature(AuthReducerFeature, reducer),
+    EffectsModule.forFeature( [AuthEffects])
   ],
   providers: [
     ConfigService,

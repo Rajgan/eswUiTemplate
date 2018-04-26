@@ -18,6 +18,7 @@ import { UserProfile } from './userprofile.model';
 export class UserProfileService {
 
   private _userprofile: UserProfile  = null;
+  private _roles: Array<string> = null;
 
   public get userProfile(): UserProfile {
     return this._userprofile;
@@ -27,7 +28,13 @@ export class UserProfileService {
     this._profileChange.next(value);
   }
 
-  public userRoles: Array<string> = [];
+  public get userRoles(): Array<string> {
+    return this._roles;
+  }
+  public set userRoles(value: Array<string>) {
+    this._roles = value;
+    this._profileChange.next(this.userProfile);
+  }
 
   private isAuthorizedSubscription: Subscription;
   public get isAuthorized(): boolean {
