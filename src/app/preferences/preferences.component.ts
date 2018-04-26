@@ -23,24 +23,7 @@ export class PreferencesComponent implements OnInit {
   ngOnInit() {}
 
   public languageChanged(selectedItem: any): void {
-    // Set the translation service to use the selected language.
-    // this.translateService.use(selectedItem).subscribe(() => {
-      // Save the change to the user's profile.
-      // this.merchantService.onLanguageChanged(selectedItem)
-    // });
     this.store.dispatch(new PrefActions.SetLanguage(selectedItem));
-
-    // Store the language in local storage - ready to use again.
-    // localStorage.setItem('lang', selectedItem);
   }
 
-  // get currentLang() {
-  //   const lang = this.language$.subscribe();
-  //   const test = this.store.select<string>(getLanguage);
-  //   return this.translateService.currentLang;
-  // }
-
-  // get currentLangTranslated() {
-  //   return this.translateService.instant(this.currentLang);
-  // }
 }

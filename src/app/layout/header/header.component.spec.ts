@@ -1,4 +1,3 @@
-import { AuthenticationModule } from './../../auth/authentication.module';
 import { GenericModalComponent } from './../../shared/ui/genericmodal/genericmodal.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
@@ -11,25 +10,32 @@ import { SharedUiModule } from '../../shared/ui/shared-ui.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserProfileService } from '../../auth/userprofile.service';
 import { UserProfile } from '../../auth/userprofile.model';
+import { TestModule } from '../../shared/testing/testModule';
+import { AuthContext } from '../../auth/auth-context.service';
+import { AuthState } from '../../auth/reducers/auth';
+import { Store } from '@ngrx/store';
+import { Logoff, Authorize } from '../../auth/actions/auth';
+import { TestAuthenticationModule } from '../../shared/testing/testAuthenticationModule';
 
 describe('Component: HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let genericModalService: GenericModalService;
-  let userService: UserProfileService;
+  let store: Store<AuthState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        TestModule,
         RouterTestingModule,
         SharedUiModule,
         ModalModule.forRoot(),
         TranslateModule.forRoot(),
-        AuthenticationModule,
+        TestAuthenticationModule,
         HttpClientTestingModule
       ],
       declarations: [ HeaderComponent ],
-      providers: [GenericModalService, UserProfileService]
+      providers: [GenericModalService, UserProfileService, AuthContext]
     })
     .compileComponents();
   }));
@@ -38,7 +44,7 @@ describe('Component: HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     genericModalService = fixture.debugElement.injector.get(GenericModalService);
-    userService = fixture.debugElement.injector.get(UserProfileService);
+    store = TestBed.get(Store);
     fixture.detectChanges();
   });
 
@@ -53,27 +59,15 @@ describe('Component: HeaderComponent', () => {
     expect(genericModalService.showWarning).toHaveBeenCalledTimes(1);
   });
 
-  it('should set user profile', () => {
-
-    const user = new UserProfile();
-    user.Email = 'test@Test.com';
-    user.FamilyName = 'test test';
-    user.GivenName = 'test';
-
-    userService.userProfile = user;
-
-    expect(userService.userProfile).toBeDefined();
-  });
-
   it('should login', () => {
-    spyOn(userService, 'login').and.callFake(function() {});
+    const spy = spyOn(store, 'dispatch');
     component.login();
-    expect(userService.login).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(new Authorize());
   });
 
   it('should logout', () => {
-    spyOn(userService, 'logout').and.callFake(function() {});
+    const spy = spyOn(store, 'dispatch');
     component.logout();
-    expect(userService.logout).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(new Logoff());
   });
 });

@@ -7,8 +7,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Ng4LoadingSpinnerComponent, Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { AuthenticationModule } from './auth/authentication.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestModule } from './shared/testing/testModule';
+import { TestAuthenticationModule } from './shared/testing/testAuthenticationModule';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -18,13 +19,13 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         LayoutModule,
         SharedServicesModule,
         HttpClientTestingModule,
-        TranslateModule.forRoot(),
+        TestModule,
         ModalModule.forRoot(),
-        AuthenticationModule
+        TestAuthenticationModule,
+        RouterTestingModule
       ],
       providers: [ Ng4LoadingSpinnerService, TranslateService ],
       declarations: [

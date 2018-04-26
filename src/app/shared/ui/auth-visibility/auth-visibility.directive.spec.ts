@@ -1,78 +1,94 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, DebugElement, APP_INITIALIZER } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthHideDirective, AuthShowDirective } from './auth-visibility.directive';
 import { By } from '@angular/platform-browser';
 import { dispatchEvent, createEvent } from '../../testing/utils';
-import { UserProfileService } from '../../../auth/userprofile.service';
-import { UserProfile } from '../../../auth/userprofile.model';
-import { OidcSecurityService, OidcConfigService, AuthModule } from 'angular-auth-oidc-client';
-import { AuthInterceptor } from '../../../auth/auth-interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ConfigService } from '../../services/configservice/config.service';
-import { AuthorizationGuard } from '../../../auth/authorization.guard';
-import { HttpClient } from 'selenium-webdriver/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { TestModule } from '../../testing/testModule';
+import { Store, StoreModule, META_REDUCERS } from '@ngrx/store';
+import { AuthState, AuthReducerFeature, reducer } from '../../../auth/reducers/auth';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from '../../../auth/effects/auth.effects';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import { AuthContext } from '../../../auth/auth-context.service';
+import { AuthenticationModule } from '../../../auth/authentication.module';
 
 describe('AuthVisibilityDirectives', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let debugShowAuthElement: DebugElement;
   let debugHideAuthElement: DebugElement;
-  let userService: UserProfileService;
+  let store: Store<AuthState>;
 
   beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          AuthModule.forRoot(),
-          HttpClientTestingModule,
-          RouterTestingModule
+          TestModule
         ],
-        declarations: [ AuthHideDirective, AuthShowDirective, TestComponent ],
-        providers: [ UserProfileService, ConfigService ]
+        declarations: [ AuthHideDirective, AuthShowDirective, TestComponent ]
       })
       .compileComponents();
   }));
 
-  beforeEach(() => {
+  describe('AuthShow', () => {
+    it('is hidden', () => {
+      store = TestBed.get(Store);
+      spyOn(store, 'select').and.returnValue(Observable.of(false));
+
       fixture = TestBed.createComponent(TestComponent);
-      component = fixture.componentInstance;
       fixture.detectChanges();
-      userService = TestBed.get(UserProfileService);
 
       debugShowAuthElement = fixture.debugElement.query(By.directive(AuthShowDirective));
+      expect(debugShowAuthElement).toBeTruthy();
+
+      // check hidden
+      expect(debugShowAuthElement.nativeElement.style.display).toBe('none');
+    });
+
+    it('is shown', () => {
+      store = TestBed.get(Store);
+      spyOn(store, 'select').and.returnValue(Observable.of(true));
+
+      fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
+
+      debugShowAuthElement = fixture.debugElement.query(By.directive(AuthShowDirective));
+      expect(debugShowAuthElement).toBeTruthy();
+
+      // check shown
+      expect(debugShowAuthElement.nativeElement.style.display).toBe('inline');
+    });
+  });
+
+  describe('AuthHide', () => {
+    it('is hidden', () => {
+      store = TestBed.get(Store);
+      spyOn(store, 'select').and.returnValue(Observable.of(true));
+
+      fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
+
       debugHideAuthElement = fixture.debugElement.query(By.directive(AuthHideDirective));
-  });
+      expect(debugHideAuthElement).toBeTruthy();
 
-  it('AuthShow is hidden, then shown', () => {
+      // check hidden
+      expect(debugHideAuthElement.nativeElement.style.display).toBe('none');
+    });
 
-    expect(debugShowAuthElement).toBeTruthy();
+    it('is shown', () => {
+      store = TestBed.get(Store);
+      spyOn(store, 'select').and.returnValue(Observable.of(false));
 
-    // check hidden
-    let el = fixture.debugElement.query(By.css('input'));
-    expect(el.nativeElement.style.display).toBe('none');
+      fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
 
-    // Set profile
-    userService.userProfile = new UserProfile();
-    fixture.detectChanges();
+      debugHideAuthElement = fixture.debugElement.query(By.directive(AuthHideDirective));
+      expect(debugHideAuthElement).toBeTruthy();
 
-    // Check shown
-    el = fixture.debugElement.query(By.css('input'));
-    expect(el.nativeElement.style.display).toBe('inline');
-  });
-  it('AuthHide is shown, then hidden', () => {
-
-    expect(debugHideAuthElement).toBeTruthy();
-
-    // check shown
-    expect(debugHideAuthElement.nativeElement.style.display).toBe('inline');
-
-    // Set profile
-    userService.userProfile = new UserProfile();
-    fixture.detectChanges();
-
-    // Check hidden
-    expect(debugHideAuthElement.nativeElement.style.display).toBe('none');
+      // check shown
+      expect(debugHideAuthElement.nativeElement.style.display).toBe('inline');
+    });
   });
 });
 
