@@ -105,12 +105,6 @@ export class NgbDropdown implements OnDestroy {
     }
   }
 
-  closeFromOutsideEsc() {
-    if (this.autoClose) {
-      this.close();
-    }
-  }
-
   /**
    * @internal
    */
