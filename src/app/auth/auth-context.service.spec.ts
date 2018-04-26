@@ -52,7 +52,7 @@ describe('Service: AuthContextService', () => {
         expect(oidcSecurityService.authorize).toHaveBeenCalled();
     });
 
-    it('should not login if already authenticated', fakeAsync(() => {
+    xit('should not login if already authenticated', fakeAsync(() => {
         spyOn(oidcSecurityService, 'authorize').and.callFake(() => {});
         expect(oidcSecurityService.authorize).not.toHaveBeenCalled();
         spyOnProperty(authContextService, 'isAuthenticated$', 'get').and.returnValue(Observable.of(true));
