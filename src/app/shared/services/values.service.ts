@@ -19,8 +19,14 @@ export class ValuesService extends HttpServiceBase {
     this.baseUrl = appConfig.UI_API_URL.url;
    }
 
-  getValues(): Observable<any> {
-    const url = this.baseUrl + '/Values/0';
+  getAllValues(): Observable<any> {
+    const url = this.baseUrl + '/Values';
+      return this.http.get<any>(url).catch(
+        error => this.handleError(error));
+  }
+
+  getValuesById(id: number): Observable<any> {
+    const url = this.baseUrl + '/Values/' + id;
       return this.http.get<any>(url).catch(
         error => this.handleError(error));
   }

@@ -21,7 +21,7 @@ export class StyleGuideComponent {
     private appInsights: AppInsightsService,
     private spinnerService: Ng4LoadingSpinnerService,
     private modalService: GenericModalService,
-    private cobRouteService: ValuesService) {
+    private valuesService: ValuesService) {
   }
 
   public showSpinnerClick(): void {
@@ -41,7 +41,7 @@ export class StyleGuideComponent {
   }
 
   public sampleServiceRequest(): void {
-    this.cobRouteService.getValues()
+    this.valuesService.getValuesById(0)
     .subscribe(
       (response) => {
       console.log(response);

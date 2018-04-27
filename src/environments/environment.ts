@@ -6,8 +6,9 @@ import { LogLevel } from '../app/shared/services/logger/LogLevel';
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
+  production: false,
   uiHostUrl: { url: 'http://localhost:4201' },
-  uiApiUrl: { url: 'http://localhost:63440/api/v1', isAuthenticated: true },
+  uiApiUrl: { url: 'http://localhost:4000/api/v1', isAuthenticated: true },
   stsAuthUrl: { url: 'https://test-sts-security-esw.eshopworld.net:9202', isAuthenticated: true },
   envName: 'Dev',
   version: '.0.0.1',

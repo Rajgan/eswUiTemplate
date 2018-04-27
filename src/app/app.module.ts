@@ -77,7 +77,7 @@ export class EswMissingTranslationHandler implements MissingTranslationHandler {
      */
     StoreDevtoolsModule.instrument({
       name: 'NgRx Book Store DevTools',
-      logOnly: environment.prod,
+      logOnly: environment.production,
     }),
 
     /**
