@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ConfigService } from './configservice/config.service';
+import { ConfigService } from './../configservice/config.service';
 import { HttpServiceBase } from './http-service-base.service';
 
 @Injectable()
@@ -16,19 +16,15 @@ export class ValuesService extends HttpServiceBase {
 
   constructor(private http: HttpClient, private appConfig: ConfigService) {
     super();
-    this.baseUrl = appConfig.UI_API_URL.url;
+    this.baseUrl = appConfig.UI_API_URL.url + '/Values';
    }
 
   getAllValues(): Observable<any> {
-    const url = this.baseUrl + '/Values';
-      return this.http.get<any>(url).catch(
-        error => this.handleError(error));
+      return this.http.get<any>(this.baseUrl).catch(error => this.handleError(error));
   }
 
   getValuesById(id: number): Observable<any> {
-    const url = this.baseUrl + '/Values/' + id;
-      return this.http.get<any>(url).catch(
-        error => this.handleError(error));
+    const url = this.baseUrl + '/' + id;
+    return this.http.get<any>(url).catch(error => this.handleError(error));
   }
-
 }

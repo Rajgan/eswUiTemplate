@@ -2,8 +2,8 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ValuesService } from './values.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from './configservice/config.service';
-import { SampleResponse } from '../models/sampleresponse.model';
+import { ConfigService } from './../configservice/config.service';
+import { SampleResponse } from '../../models/sampleresponse.model';
 
 
 

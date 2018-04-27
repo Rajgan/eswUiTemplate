@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ApiErrorModel } from '../models/error.model';
+import { ApiErrorModel } from '../../models/error.model';
 
 
 export class HttpServiceBase {

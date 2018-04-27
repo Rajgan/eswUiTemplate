@@ -4,7 +4,7 @@ import { GenericModalService } from './../shared/services/gernericmodal/genericm
 import { ModalType, ModalStyle } from './../shared/ui/genericmodal/genericmodal.component';
 import { CustomComponent } from './custom-modal/custommodal.component';
 import { AppInsightsService } from '../shared/services/appInsights/appInsights.module';
-import { ValuesService } from '../shared/services/values.service';
+import { ValuesService } from '../shared/services/api/values.service';
 import { ApiErrorModel } from '../shared/models/error.model';
 
 @Component({
