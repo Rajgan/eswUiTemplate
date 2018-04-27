@@ -77,6 +77,9 @@ export class UserProfileService {
     this.oidcSecurityService.logoff();
 
     this.isAuthorizedSubscription.unsubscribe();
+
+    this.userProfile = null;
+    this.userRoles = null;
     /*
     this.oidcSecurityService.onModuleSetup.unsubscribe();
     this.oidcSecurityService.onCheckSessionChanged.unsubscribe();
