@@ -4,6 +4,8 @@ import { GenericModalService } from './../shared/services/gernericmodal/genericm
 import { ModalType, ModalStyle } from './../shared/ui/genericmodal/genericmodal.component';
 import { CustomComponent } from './custom-modal/custommodal.component';
 import { AppInsightsService } from '../shared/services/appInsights/appInsights.module';
+import { ValuesService } from '../shared/services/values.service';
+import { ApiErrorModel } from '../shared/models/error.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,7 +20,8 @@ export class StyleGuideComponent {
   public constructor(
     private appInsights: AppInsightsService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private modalService: GenericModalService) {
+    private modalService: GenericModalService,
+    private valuesService: ValuesService) {
   }
 
   public showSpinnerClick(): void {
@@ -35,5 +38,19 @@ export class StyleGuideComponent {
 
   public showCustomModalClick(): void {
     this.exampleModal.show();
+  }
+
+  public sampleServiceRequest(): void {
+    this.valuesService.getValuesById(0)
+    .subscribe(
+      (response) => {
+      console.log(response);
+      },
+      (error) => {
+        console.log(error);
+        const apiError = <ApiErrorModel>error;
+        // Write you own logic to Publish you error
+       }
+    );
   }
 }

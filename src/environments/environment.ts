@@ -7,8 +7,8 @@ import { LogLevel } from '../app/shared/services/logger/LogLevel';
 
 export const environment = {
   production: false,
-  uiHostUrl: { url: 'http://localhost:4200' },
-  uiApiUrl: { url: 'http://localhost:4000', isAuthenticated: true },
+  uiHostUrl: { url: 'http://localhost:4201' },
+  uiApiUrl: { url: 'http://localhost:4000/api/v1', isAuthenticated: true },
   stsAuthUrl: { url: 'https://test-sts-security-esw.eshopworld.net:9202', isAuthenticated: true },
   envName: 'Dev',
   version: '.0.0.1',
