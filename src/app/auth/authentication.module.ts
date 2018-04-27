@@ -10,11 +10,6 @@ import {
   AuthWellKnownEndpoints
 } from 'angular-auth-oidc-client';
 import { ConfigService } from './../shared/services/configservice/config.service';
-import { StoreModule } from '@ngrx/store';
-import { AuthReducerFeature } from './reducers/auth';
-import { reducer } from './reducers/auth';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './effects/auth.effects';
 import { RoleVisibilityDirective } from './role-visibility/role-visibility.directive';
 import { AuthHideDirective, AuthShowDirective } from './auth-visibility/auth-visibility.directive';
 
@@ -22,8 +17,6 @@ import { AuthHideDirective, AuthShowDirective } from './auth-visibility/auth-vis
   declarations: [ AuthHideDirective, AuthShowDirective, RoleVisibilityDirective ],
   imports: [
     AuthModule.forRoot(),
-    StoreModule.forFeature(AuthReducerFeature, reducer),
-    EffectsModule.forFeature( [AuthEffects])
   ],
   providers: [
     ConfigService,

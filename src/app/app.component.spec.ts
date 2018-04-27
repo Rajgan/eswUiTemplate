@@ -1,3 +1,7 @@
+import { ConfigService } from './shared/services/configservice/config.service';
+import { FooterComponent } from './layout/footer/footer.component';
+import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
+import { HeaderComponent } from './layout/header/header.component';
 import { SharedServicesModule } from './shared/services/shared-services.module';
 import { Component, ViewChild } from '@angular/core';
 import { LayoutModule } from './layout/layout.module';
@@ -8,7 +12,6 @@ import { Ng4LoadingSpinnerComponent, Ng4LoadingSpinnerService } from 'ng4-loadin
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TestModule } from './shared/testing/testModule';
 import { TestAuthenticationModule } from './shared/testing/testAuthenticationModule';
 
 describe('AppComponent', () => {
@@ -19,18 +22,20 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        LayoutModule,
         SharedServicesModule,
         HttpClientTestingModule,
-        TestModule,
+        TranslateModule.forRoot(),
         ModalModule.forRoot(),
-        TestAuthenticationModule,
         RouterTestingModule,
+        TestAuthenticationModule
       ],
-      providers: [ Ng4LoadingSpinnerService, TranslateService ],
+      providers: [ Ng4LoadingSpinnerService, TranslateService, ConfigService ],
       declarations: [
         AppComponent,
-        Ng4LoadingSpinnerComponent
+        Ng4LoadingSpinnerComponent,
+        HeaderComponent,
+        BreadcrumbComponent,
+        FooterComponent
       ],
     }).compileComponents();
   }));

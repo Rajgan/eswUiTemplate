@@ -1,5 +1,6 @@
+import { UserProfile } from './../../auth/userprofile.model';
 import { GenericModalComponent } from './../../shared/ui/genericmodal/genericmodal.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { GenericModalService } from '../../shared/services/gernericmodal/genericmodal.service';
@@ -8,33 +9,29 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedUiModule } from '../../shared/ui/shared-ui.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UserProfile } from '../../auth/userprofile.model';
-import { TestModule } from '../../shared/testing/testModule';
 import { AuthContext } from '../../auth/auth-context.service';
-import { AuthState } from '../../auth/reducers/auth';
-import { Store } from '@ngrx/store';
-import { Logoff, Authorize } from '../../auth/actions/auth';
 import { TestAuthenticationModule } from '../../shared/testing/testAuthenticationModule';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 describe('Component: HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let genericModalService: GenericModalService;
-  let store: Store<AuthState>;
+  let authService: AuthContext;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        TestModule,
         RouterTestingModule,
         SharedUiModule,
         ModalModule.forRoot(),
         TranslateModule.forRoot(),
-        TestAuthenticationModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        TestAuthenticationModule
       ],
       declarations: [ HeaderComponent ],
-      providers: [GenericModalService, AuthContext]
+      providers: [ GenericModalService ]
     })
     .compileComponents();
   }));
@@ -42,13 +39,12 @@ describe('Component: HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    authService = TestBed.get(AuthContext);
     genericModalService = fixture.debugElement.injector.get(GenericModalService);
-    store = TestBed.get(Store);
-    fixture.detectChanges();
+
   });
 
   it('should create', () => {
-
     expect(component).toBeTruthy();
   });
 
@@ -59,14 +55,34 @@ describe('Component: HeaderComponent', () => {
   });
 
   it('should login', () => {
-    const spy = spyOn(store, 'dispatch');
+    const spy = spyOn(authService, 'logIn');
     component.login();
-    expect(spy).toHaveBeenCalledWith(new Authorize());
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should logout', () => {
-    const spy = spyOn(store, 'dispatch');
+    const spy = spyOn(authService, 'logoff');
     component.logout();
-    expect(spy).toHaveBeenCalledWith(new Logoff());
+    expect(spy).toHaveBeenCalled();
   });
+
+  it('should display the user name when logged in', fakeAsync(() => {
+    const user = new UserProfile();
+    user.GivenName = 'Tim';
+    spyOnProperty(authService, 'userInfo$', 'get').and.returnValue(Observable.of(user));
+
+    tick();
+    fixture.detectChanges();
+
+    expect(component.name).toEqual('Tim');
+  }));
+
+  it('should not display the user name when logged out', fakeAsync(() => {
+    spyOnProperty(authService, 'userInfo$', 'get').and.returnValue(Observable.of(null));
+
+    tick();
+    fixture.detectChanges();
+
+    expect(component.name).toEqual(null);
+  }));
 });

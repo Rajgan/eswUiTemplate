@@ -1,13 +1,13 @@
-import { TestAuthenticationModule } from './../shared/testing/testAuthenticationModule';
+import { UserProfile } from './userprofile.model';
 import { async, inject, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 import { AuthContext } from './auth-context.service';
-import { TestModule } from '../shared/testing/testModule';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { TestAuthenticationModule } from '../shared/testing/testAuthenticationModule';
 
 describe('Service: AuthContextService', () => {
     let authContextService: AuthContext;
@@ -16,7 +16,6 @@ describe('Service: AuthContextService', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
         imports: [
-            TestModule,
             TestAuthenticationModule,
             HttpClientTestingModule,
             RouterTestingModule
@@ -60,5 +59,39 @@ describe('Service: AuthContextService', () => {
         authContextService.logIn();
         expect(oidcSecurityService.authorize).not.toHaveBeenCalled();
     }));
+
+    it('should return the user', fakeAsync(() => {
+        const user = new UserProfile();
+        user.GivenName = 'Tim';
+        user.Email = 'b@p.com';
+
+        spyOnProperty(authContextService, 'userInfo$', 'get').and.returnValue(Observable.of(user));
+
+        authContextService.userInfo$.subscribe((userProfile) => {
+            expect(userProfile).toEqual(user);
+        });
+
+        spyOn(oidcSecurityService, 'getUserData').and.callFake(() => Observable.of(user));
+        tick();
+
+    }));
+
+    it('should get Bearer token when authenticated', () => {
+        spyOnProperty(authContextService, 'isAuthenticated', 'get').and.returnValue(true);
+        spyOn(oidcSecurityService, 'getToken').and.returnValue('I am a token');
+
+        expect(authContextService.getAuthenticationHeaderValue('blah')).toEqual('Bearer I am a token');
+    });
+
+    it('should not get Bearer token when not authenticated', () => {
+        spyOnProperty(authContextService, 'isAuthenticated', 'get').and.returnValue(false);
+        spyOn(oidcSecurityService, 'getToken').and.returnValue('I am a token');
+
+        expect(authContextService.getAuthenticationHeaderValue('blah')).toEqual(null);
+    });
+
+    xit('should get the roles', () => {
+        spyOn(oidcSecurityService, 'getToken').and.returnValue('I.am.a.token');
+    });
 
 });

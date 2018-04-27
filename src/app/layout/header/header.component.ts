@@ -5,11 +5,7 @@ import { GenericModalService } from './../../shared/services/gernericmodal/gener
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { TranslateService } from '@ngx-translate/core';
 import { UserProfile } from '../../auth/userprofile.model';
-import { Store } from '@ngrx/store';
-import { AuthState } from '../../auth/reducers/auth';
-import { Authorize, Logoff } from '../../auth/actions/auth';
-import { getUser } from '../../auth/reducers/auth';
-import { Observable } from 'rxjs/Observable';
+import { AuthContext } from '../../auth/auth-context.service';
 
 // Component that will contain the header html. Populates the <navigation></navigation> element.
 @Component({
@@ -18,20 +14,25 @@ import { Observable } from 'rxjs/Observable';
   exportAs: 'eswHeader',
   templateUrl: 'header.component.html',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   public name: string = null;
   public router: Router;
-
-  user$: Observable<UserProfile>;
 
   public constructor(
     private route: Router,
     private modalService: GenericModalService,
     private translateService: TranslateService,
-    private store: Store<AuthState>) {
-    this.router = route;
-    this.user$ = this.store.select(getUser);
+    private authService: AuthContext) {
+      this.router = route;
+  }
+
+  ngOnInit() {
+    this.authService.userInfo$.subscribe((user) => {
+      if (user != null) {
+        this.name = user.GivenName;
+      }
+    });
   }
 
   public notImplementedModal() {
@@ -43,10 +44,10 @@ export class HeaderComponent {
   }
 
   public logout() {
-    this.store.dispatch(new Logoff());
+    this.authService.logoff();
   }
 
   public login() {
-    this.store.dispatch(new Authorize());
+    this.authService.logIn();
   }
 }

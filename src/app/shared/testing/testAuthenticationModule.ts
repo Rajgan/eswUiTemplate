@@ -7,25 +7,21 @@ import {
   OidcConfigService,
   AuthWellKnownEndpoints
 } from 'angular-auth-oidc-client';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from '../../auth/effects/auth.effects';
 import { ConfigService } from '../services/configservice/config.service';
-import { AuthReducerFeature, reducer } from '../../auth/reducers/auth';
 import { AuthorizationGuard } from '../../auth/authorization.guard';
+import { AuthContext } from '../../auth/auth-context.service';
 
 @NgModule({
   declarations: [],
   imports: [
     AuthModule.forRoot(),
-    StoreModule.forFeature(AuthReducerFeature, reducer),
-    EffectsModule.forFeature( [AuthEffects])
   ],
   providers: [
     ConfigService,
     AuthorizationGuard,
     OidcSecurityService,
-    OidcConfigService
+    OidcConfigService,
+    AuthContext
 
   ]
 })

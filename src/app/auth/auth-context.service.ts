@@ -1,13 +1,8 @@
 import { UserProfile } from './userprofile.model';
 import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs/Observable';
 import { filter, map, tap } from 'rxjs/operators';
-
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { Store } from '@ngrx/store';
-import { Authorized } from './actions/auth';
-import { AuthState } from './reducers/auth';
 
 @Injectable()
 export class AuthContext {
@@ -69,14 +64,10 @@ export class AuthContext {
     return roles;
   }
 
-  constructor(private oidcSecurityService: OidcSecurityService,
-              private store: Store<AuthState>) {
+  constructor(private oidcSecurityService: OidcSecurityService) {
     this.isAuthenticated$.subscribe(
       (isAuthenticated) => {
         this._isAuthenticated = isAuthenticated;
-        if (isAuthenticated) {
-          this.store.dispatch(new Authorized());
-        }
       }
     );
   }

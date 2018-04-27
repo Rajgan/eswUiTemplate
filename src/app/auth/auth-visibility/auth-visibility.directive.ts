@@ -1,43 +1,31 @@
 import { ElementRef, Directive, OnInit } from '@angular/core';
 import { inherits } from 'util';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { AuthState, getIsLoggedIn } from '../reducers/auth';
+import { AuthContext } from '../auth-context.service';
 
 @Directive({selector: '[eswAuthShow]'})
 export class AuthShowDirective implements OnInit {
 
-    isLoggedIn$: Observable<boolean>;
+    isloggedIn: boolean;
 
     constructor(readonly element: ElementRef,
-                private store: Store<AuthState>) {
-                    this.isLoggedIn$ = this.store.select(getIsLoggedIn);
-                 }
+                private authService: AuthContext) { }
 
     ngOnInit() {
-        this.isLoggedIn$.subscribe(
-            (isLoggedIn) => {
-                this.element.nativeElement.style.display = (isLoggedIn ? 'inline' : 'none');
-            }
-        );
+        this.authService.isAuthenticated$.subscribe((loggedIn) => {
+            this.element.nativeElement.style.display = (loggedIn ? 'inline' : 'none');
+        });
     }
 }
 
 @Directive({selector: '[eswAuthHide]'})
 export class AuthHideDirective implements OnInit {
 
-    isLoggedIn$: Observable<boolean>;
-
     constructor(readonly element: ElementRef,
-                private store: Store<AuthState>) {
-                    this.isLoggedIn$ = this.store.select(getIsLoggedIn);
-                 }
+                private authService: AuthContext) { }
 
     ngOnInit() {
-        this.isLoggedIn$.subscribe(
-            (isLoggedIn) => {
-                this.element.nativeElement.style.display = (!isLoggedIn ? 'inline' : 'none');
-            }
-        );
+        this.authService.isAuthenticated$.subscribe((loggedIn) => {
+            this.element.nativeElement.style.display = (!loggedIn ? 'inline' : 'none');
+        });
     }
 }

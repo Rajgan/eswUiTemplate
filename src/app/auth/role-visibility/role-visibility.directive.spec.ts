@@ -4,13 +4,11 @@ import { RoleVisibilityDirective } from './role-visibility.directive';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthModule } from 'angular-auth-oidc-client';
-import { UserProfile } from '../userprofile.model';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { Store } from '@ngrx/store';
-import { AuthState } from '../reducers/auth';
-import { TestModule } from '../../shared/testing/testModule';
+import { AuthContext } from '../auth-context.service';
+import { TestAuthenticationModule } from '../../shared/testing/testAuthenticationModule';
 
 
 describe('RoleVisibilityDirective', () => {
@@ -19,12 +17,14 @@ describe('RoleVisibilityDirective', () => {
   let debugElement: DebugElement;
   let dir: RoleVisibilityDirective;
   const userRole = 'testRole';
-  // let store: Store<AuthState>;
+  let authService: AuthContext;
 
   beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          TestModule
+          HttpClientTestingModule,
+          RouterTestingModule,
+          TestAuthenticationModule
         ],
         declarations: [ RoleVisibilityDirective, TestComponent ]
       })
@@ -34,6 +34,8 @@ describe('RoleVisibilityDirective', () => {
   beforeEach(() => {
       fixture = TestBed.createComponent(TestComponent);
       component = fixture.componentInstance;
+      authService = TestBed.get(AuthContext);
+      spyOn(authService, 'getRoles').and.returnValue([userRole]);
 
       debugElement = fixture.debugElement.query(By.directive(RoleVisibilityDirective));
       dir = debugElement.injector.get(RoleVisibilityDirective) as RoleVisibilityDirective;
@@ -42,10 +44,9 @@ describe('RoleVisibilityDirective', () => {
 
   describe('RoleVisibility', () => {
     it('is hidden', fakeAsync(() => {
-
+      spyOnProperty(authService, 'isAuthenticated$', 'get').and.returnValue(Observable.of(false));
       dir.matchRole = '';
-      dir.isLoggedIn$ = Observable.of(false);
-      dir.roles$ = Observable.of([]);
+
       tick();
       fixture.detectChanges();
       // check hidden
@@ -53,10 +54,9 @@ describe('RoleVisibilityDirective', () => {
     }));
 
     it('is shown', fakeAsync(() => {
-
+      spyOnProperty(authService, 'isAuthenticated$', 'get').and.returnValue(Observable.of(true));
       dir.matchRole = userRole;
-      dir.isLoggedIn$ = Observable.of(true);
-      dir.roles$ = Observable.of([userRole]);
+
       tick();
       fixture.detectChanges();
       // check shown
