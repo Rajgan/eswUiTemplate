@@ -15,9 +15,11 @@ import { AuthReducerFeature } from './reducers/auth';
 import { reducer } from './reducers/auth';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './effects/auth.effects';
+import { RoleVisibilityDirective } from './role-visibility/role-visibility.directive';
+import { AuthHideDirective, AuthShowDirective } from './auth-visibility/auth-visibility.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [ AuthHideDirective, AuthShowDirective, RoleVisibilityDirective ],
   imports: [
     AuthModule.forRoot(),
     StoreModule.forFeature(AuthReducerFeature, reducer),
@@ -41,7 +43,8 @@ import { AuthEffects } from './effects/auth.effects';
       multi: true
     }
 
-  ]
+  ],
+  exports: [ AuthHideDirective, AuthShowDirective, RoleVisibilityDirective ]
 })
 export class AuthenticationModule {
 

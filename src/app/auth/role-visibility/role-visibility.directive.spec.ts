@@ -1,18 +1,16 @@
 import { DebugElement, Component } from '@angular/core';
-import { UserProfileService } from '../../../auth/userprofile.service';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RoleVisibilityDirective } from './role-visibility.directive';
-import { ConfigService } from '../../services/configservice/config.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthModule } from 'angular-auth-oidc-client';
-import { UserProfile } from '../../../auth/userprofile.model';
+import { UserProfile } from '../userprofile.model';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Store } from '@ngrx/store';
-import { AuthState } from '../../../auth/reducers/auth';
-import { TestModule } from '../../testing/testModule';
+import { AuthState } from '../reducers/auth';
+import { TestModule } from '../../shared/testing/testModule';
 
 
 describe('RoleVisibilityDirective', () => {
@@ -28,8 +26,7 @@ describe('RoleVisibilityDirective', () => {
         imports: [
           TestModule
         ],
-        declarations: [ RoleVisibilityDirective, TestComponent ],
-        providers: [ ConfigService ]
+        declarations: [ RoleVisibilityDirective, TestComponent ]
       })
       .compileComponents();
     }));

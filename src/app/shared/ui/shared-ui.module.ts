@@ -6,8 +6,7 @@ import { NgbDropdownToggle } from './dropdown/ngbdropdown.directive';
 import { GenericModalComponent } from './genericmodal/genericmodal.component';
 import { CollapsePanelComponent } from './collapsePanel/collapsePanel.component';
 import { NumericFieldDirective } from './numeric-field/numeric-field.directive';
-import { RoleVisibilityDirective } from './role-visibility/role-visibility.directive';
-import { AuthHideDirective, AuthShowDirective } from './auth-visibility/auth-visibility.directive';
+
 
 
 @NgModule({

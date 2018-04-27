@@ -2,7 +2,7 @@ import { ElementRef, Directive, OnInit, Input } from '@angular/core';
 import { inherits } from 'util';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { AuthState, getIsLoggedIn, getRoles } from '../../../auth/reducers/auth';
+import { AuthState, getIsLoggedIn, getRoles } from '../reducers/auth';
 
 @Directive({selector: '[eswRoleVisibility]'})
 export class RoleVisibilityDirective implements OnInit {

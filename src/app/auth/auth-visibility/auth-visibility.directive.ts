@@ -1,8 +1,8 @@
-import { AuthState, getIsLoggedIn } from './../../../auth/reducers/auth';
 import { ElementRef, Directive, OnInit } from '@angular/core';
 import { inherits } from 'util';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { AuthState, getIsLoggedIn } from '../reducers/auth';
 
 @Directive({selector: '[eswAuthShow]'})
 export class AuthShowDirective implements OnInit {

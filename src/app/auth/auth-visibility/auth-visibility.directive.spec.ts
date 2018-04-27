@@ -4,16 +4,15 @@ import { Component, DebugElement, APP_INITIALIZER } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthHideDirective, AuthShowDirective } from './auth-visibility.directive';
 import { By } from '@angular/platform-browser';
-import { dispatchEvent, createEvent } from '../../testing/utils';
-import { TestModule } from '../../testing/testModule';
+import { dispatchEvent, createEvent } from '../../shared/testing/utils';
+import { TestModule } from '../../shared/testing/testModule';
 import { Store, StoreModule, META_REDUCERS } from '@ngrx/store';
-import { AuthState, AuthReducerFeature, reducer } from '../../../auth/reducers/auth';
+import { AuthState, AuthReducerFeature, reducer } from '../reducers/auth';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from '../../../auth/effects/auth.effects';
+import { AuthEffects } from '../effects/auth.effects';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { AuthContext } from '../../../auth/auth-context.service';
-import { AuthenticationModule } from '../../../auth/authentication.module';
+import { AuthContext } from '../auth-context.service';
 
 describe('AuthVisibilityDirectives', () => {
   let fixture: ComponentFixture<TestComponent>;
