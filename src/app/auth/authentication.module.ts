@@ -10,7 +10,6 @@ import {
   AuthWellKnownEndpoints
 } from 'angular-auth-oidc-client';
 import { ConfigService } from './../shared/services/configservice/config.service';
-import { UserProfileService } from './userprofile.service';
 import { StoreModule } from '@ngrx/store';
 import { AuthReducerFeature } from './reducers/auth';
 import { reducer } from './reducers/auth';

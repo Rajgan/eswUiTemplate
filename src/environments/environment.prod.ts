@@ -1,7 +1,6 @@
 import { LogLevel } from '../app/shared/services/logger/LogLevel';
 
 export const environment = {
-  production: true,
   uiHostUrl: { url: '#{uiHostUrlPROD}' },
   uiApiUrl: { url: '#{uiApiUrlPROD}', isAuthenticated: true },
   stsAuthUrl: { url: '#{stsAuthUrlPROD}', isAuthenticated: true },
@@ -14,5 +13,6 @@ export const environment = {
       enabled: Boolean('#{telemetryEnabledPROD}'),
       InstrumentationKey: '#{telemetryInternalKeyPROD}'
     },
-  }
+  },
+  production: true
 };

@@ -10,25 +10,26 @@ import { UserProfile } from '../../../auth/userprofile.model';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../../../auth/reducers/auth';
+import { TestModule } from '../../testing/testModule';
 
 
 describe('RoleVisibilityDirective', () => {
-  let userService: UserProfileService;
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let debugElement: DebugElement;
   let dir: RoleVisibilityDirective;
   const userRole = 'testRole';
+  // let store: Store<AuthState>;
 
   beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          AuthModule.forRoot(),
-          HttpClientTestingModule,
-          RouterTestingModule
+          TestModule
         ],
         declarations: [ RoleVisibilityDirective, TestComponent ],
-        providers: [ UserProfileService, ConfigService ]
+        providers: [ ConfigService ]
       })
       .compileComponents();
     }));
@@ -37,19 +38,17 @@ describe('RoleVisibilityDirective', () => {
       fixture = TestBed.createComponent(TestComponent);
       component = fixture.componentInstance;
 
-      userService = TestBed.get(UserProfileService);
-
       debugElement = fixture.debugElement.query(By.directive(RoleVisibilityDirective));
       dir = debugElement.injector.get(RoleVisibilityDirective) as RoleVisibilityDirective;
       expect(dir).toBeTruthy();
-      userService.userLoggedOn = Observable.of(new UserProfile());
   });
 
   describe('RoleVisibility', () => {
     it('is hidden', fakeAsync(() => {
 
       dir.matchRole = '';
-      userService.userRoles = [];
+      dir.isLoggedIn$ = Observable.of(false);
+      dir.roles$ = Observable.of([]);
       tick();
       fixture.detectChanges();
       // check hidden
@@ -59,7 +58,8 @@ describe('RoleVisibilityDirective', () => {
     it('is shown', fakeAsync(() => {
 
       dir.matchRole = userRole;
-      userService.userRoles = [userRole];
+      dir.isLoggedIn$ = Observable.of(true);
+      dir.roles$ = Observable.of([userRole]);
       tick();
       fixture.detectChanges();
       // check shown

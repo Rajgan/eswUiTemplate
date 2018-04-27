@@ -8,7 +8,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedUiModule } from '../../shared/ui/shared-ui.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UserProfileService } from '../../auth/userprofile.service';
 import { UserProfile } from '../../auth/userprofile.model';
 import { TestModule } from '../../shared/testing/testModule';
 import { AuthContext } from '../../auth/auth-context.service';
@@ -35,7 +34,7 @@ describe('Component: HeaderComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [ HeaderComponent ],
-      providers: [GenericModalService, UserProfileService, AuthContext]
+      providers: [GenericModalService, AuthContext]
     })
     .compileComponents();
   }));

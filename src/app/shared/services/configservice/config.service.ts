@@ -8,7 +8,7 @@ import { LogLevel } from '../logger/LogLevel';
 export class ConfigService {
 
     public get UI_API_URL(): any {
-        return environment.uiApiUrl;
+        return environment.uiApiUrl.url;
     }
     public get ENV_NAME(): string {
         return environment.envName;
@@ -20,10 +20,10 @@ export class ConfigService {
         return environment.showBreadcrumb;
     }
     public get STS_AUTH_URL(): any {
-      return environment.stsAuthUrl;
+      return environment.stsAuthUrl.url;
     }
     public get UI_HOST_URL(): any {
-      return environment.uiHostUrl;
+      return environment.uiHostUrl.url;
     }
     public get LOGLEVEL(): LogLevel {
       return environment.Logging.loglevel;

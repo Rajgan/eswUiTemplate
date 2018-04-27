@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule } from '@angular/router';
 import { createTranslateLoader } from '../shared/utils/translationLoader';
-import { UserProfileService } from '../auth/userprofile.service';
 import { AuthVisibilityModule } from '../shared/ui/auth-visibility/auth-visibility.module';
 import { RoleVisibiltyModule } from '../shared/ui/role-visibility/role-visibility.module';
 
@@ -24,9 +23,6 @@ import { RoleVisibiltyModule } from '../shared/ui/role-visibility/role-visibilit
     HeaderComponent,
     BreadcrumbComponent,
     FooterComponent
-  ],
-  providers: [
-    UserProfileService
   ],
   exports: [
     HeaderComponent,

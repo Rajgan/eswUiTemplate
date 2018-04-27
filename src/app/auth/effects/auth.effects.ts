@@ -1,4 +1,4 @@
-import { AuthActionTypes, Logoff, SetUser, Authorize, Authorized } from './../actions/auth';
+import { AuthActionTypes, Logoff, SetUser, Authorize, Authorized, SetRoles } from './../actions/auth';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AuthContext } from '../auth-context.service';
@@ -22,7 +22,8 @@ export class AuthEffects {
                     .pipe(
                         map(user => new SetUser({ user }))
                     )
-            )
+                ),
+                tap(() => new SetRoles({ roles: this.authCtx.getRoles() }))
         );
 
     @Effect({ dispatch: false})

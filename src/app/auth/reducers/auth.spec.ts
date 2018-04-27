@@ -13,7 +13,8 @@ describe('Auth reducer', () => {
             .toEqual(
                 {
                     isLoggedIn: false,
-                    user: undefined
+                    user: undefined,
+                    roles: []
                 }
             );
     });
@@ -25,7 +26,8 @@ describe('Auth reducer', () => {
             )).toEqual(
                 {
                     isLoggedIn: true,
-                    user: user
+                    user: user,
+                    roles: []
                 }
             );
     });
@@ -37,7 +39,8 @@ describe('Auth reducer', () => {
             )).toEqual(
                 {
                     isLoggedIn: true,
-                    user: undefined
+                    user: undefined,
+                    roles: []
                 }
             );
     });

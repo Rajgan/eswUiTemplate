@@ -18,5 +18,6 @@ export const environment = {
       enabled: Boolean('#{telemetryEnabled}'),
       InstrumentationKey: '#{telemetryInternalKey}'
     },
-  }
+  },
+  production: Boolean('#{production}')
 };

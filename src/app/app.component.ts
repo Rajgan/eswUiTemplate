@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { GenericModalService } from './shared/services/gernericmodal/genericmodal.service';
 import { ModalType, ModalStyle } from './shared/ui/genericmodal/genericmodal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { LoggerService } from './shared/services/logger/logger.service';
 import { ConfigService } from './shared/services/configservice/config.service';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'esw-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'app';
   showBreadcrumb = false;
 
-  public constructor(private translateService: TranslateService, private configuration: ConfigService, private logger: LoggerService) {
+  public constructor(private translateService: TranslateService,
+                      private configuration: ConfigService,
+                      private logger: LoggerService,
+                      public oidcSecurityService: OidcSecurityService) {
 
     logger.logDebug('THIS IS A ROB LOG TEST');
 
@@ -36,6 +40,14 @@ export class AppComponent {
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translateService.use(browserLang.match(/en|de/) ? browserLang : 'en');
     this.showBreadcrumb = configuration.SHOW_BREADCUMB;
+
+    if (this.oidcSecurityService.moduleSetup) {
+      this.doCallbackLogicIfRequired();
+    } else {
+      this.oidcSecurityService.onModuleSetup.subscribe(() => {
+        this.doCallbackLogicIfRequired();
+      });
+    }
   }
 
   get currentLang() {
@@ -43,5 +55,15 @@ export class AppComponent {
   }
   get currentLangTranslated() {
     return this.translateService.instant(this.currentLang);
+  }
+
+  ngOnDestroy(): void {
+    this.oidcSecurityService.onModuleSetup.unsubscribe();
+  }
+
+  private doCallbackLogicIfRequired() {
+    if (window.location.hash) {
+      this.oidcSecurityService.authorizedCallback();
+    }
   }
 }

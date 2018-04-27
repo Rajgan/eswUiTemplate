@@ -5,7 +5,8 @@ export enum AuthActionTypes {
     Logoff = '[Auth] Logoff',
     Authorize = '[Auth] Authorize',
     Authorized = '[Auth] Authorized',
-    SetUser = '[Auth] SetUser'
+    SetUser = '[Auth] SetUser',
+    SetRoles = '[Auth] SetRoles'
 }
 
 export class Authorize implements Action {
@@ -20,7 +21,13 @@ export class SetUser implements Action {
     readonly type = AuthActionTypes.SetUser;
 
     constructor(public payload: { user: UserProfile }) {
-        // console.log(payload.user);
+    }
+}
+
+export class SetRoles implements Action {
+    readonly type = AuthActionTypes.SetRoles;
+
+    constructor(public payload: { roles: Array<string> }) {
     }
 }
 
@@ -33,4 +40,5 @@ export type AuthActionsUnion =
     Logoff |
     Authorize |
     Authorized |
-    SetUser;
+    SetUser |
+    SetRoles;
