@@ -81,8 +81,8 @@ export class BreadcrumbComponent {
             !(route.indexOf('token') > -1)) {
           // Get the key (route name) and value (actual route).
           // const key = this.capitalise(route.split(/(?=[A-Z])/).join(' '));
-          keyValue.tag = 'breadcrumb.' + route;
-          const translatedKey = this.translateService.instant(keyValue.tag.toLowerCase());
+          keyValue.tag = 'breadcrumb.' + route.toLowerCase();
+          const translatedKey = this.translateService.instant(keyValue.tag);
           keyValue.key = translatedKey;
           keyValue.value = route;
 
