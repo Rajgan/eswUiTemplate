@@ -46,9 +46,9 @@ export class BreadcrumbComponent {
 
     const routeMatch = this.router;
 
-    // Split the url into parts, e.g. "/route.search" will be spit into: "" and "route.search".  The first "" will be
-    // taken as a "Home" link, the second will be further split by "." and first letter capitalised to produce "Route Search".
-    // This means if we nest routes such as /route.search/add.route we can get an automatic breadcrumb of "Home / Route Search / Add Route".
+    // Split the url into parts, e.g. "/routeSearch" will be spit into: "" and "routeSearch".  The first "" will be
+    // taken as a "Home" link, the second will be further split by capital letters and first letter capitalised to produce "Route Search".
+    // This means if we nest routes such as /routeSearch/addRoute we can get an automatic breadcrumb of "Home / Route Search / Add Route".
     const routeParts: Array<Object> = routeUrl.split('/');
 
     // Variables used in loop for building our breadcrumb.
@@ -62,7 +62,7 @@ export class BreadcrumbComponent {
       const keyValue = new KeyValuePair<string>();
 
       // Test to see if this is a blank string.
-      const route = routeParts[index].toString().toLowerCase();
+      const route = routeParts[index].toString();
 
       if (route === '') {
 
@@ -81,8 +81,8 @@ export class BreadcrumbComponent {
             !(route.indexOf('token') > -1)) {
           // Get the key (route name) and value (actual route).
           // const key = this.capitalise(route.split(/(?=[A-Z])/).join(' '));
-          keyValue.tag = 'breadcrumb.' + route.toLowerCase();
-          const translatedKey = this.translateService.instant(keyValue.tag);
+          keyValue.tag = 'breadcrumb.' + route;
+          const translatedKey = this.translateService.instant(keyValue.tag.toLowerCase());
           keyValue.key = translatedKey;
           keyValue.value = route;
 
