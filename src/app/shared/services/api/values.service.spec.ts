@@ -64,31 +64,57 @@ describe('ValuesService', () => {
     // Sample for error catching
     describe('getValuesById', () => {
 
-        it('should return all values', () => {
+        it('should fail for Bad Request', () => {
             const input = 0;
             const BAD_REQUEST = 400;
+            const errorIdentifier = 'cfc78ed9-4e771215efdd64b1';
+            const errorKey = 'Id';
+            const errorMessage = 'Invalid Id Passed';
+
             valuesService.getValuesById(input).subscribe(
-                (result) => {
-                    expect('getAllById should fail on this test').toBeFalsy();
-                },
-                (fail) => {
-                    expect(fail).toBeTruthy();
-                }
-            );
+                () => {
+                    fail('expected error');
+                  },
+                  (error) => {
+                    expect(error.errorIdentifier).toEqual(errorIdentifier);
+                    expect(error.statusCode).toEqual(BAD_REQUEST);
+                    expect(error.errors[0].errorKey).toEqual(errorKey);
+                    expect(error.errors[0].errorMessage).toEqual(errorMessage);
+            });
 
             const url = baseUrl + '/Values/' + input;
             const request = httpMock.expectOne({ method: 'get', url: url });
             expect(request.request.method).toEqual('GET', url);
-            request.flush(JSON.stringify({
-                error: {
-                    errorType: 2, errorDetails: [
-                        { errorKey: 'Id', errorCode: '1001', errorMessage: 'Invalid Id Passed' }],
-                    errorIdentifier: 'cfc78ed9-4e771215efdd64b1'
-                }
-            }),
+            request.flush({
+                    errorType: 2,
+                    errorDetails: [{
+                        errorKey: errorKey, errorCode: '1001', errorMessage: errorMessage
+                    }],
+                    errorIdentifier: errorIdentifier
+                },
                 { status: BAD_REQUEST, statusText: 'Bad Request' });
             httpMock.verify();
         });
+
+        it('should fail for Server Error', () => {
+            const input = 0;
+            const BAD_REQUEST = 500;
+            const statusText = 'Bad Request';
+            const errMsg = 'boom';
+
+            valuesService.getValuesById(input).subscribe(
+                () => {
+                    fail('expected error');
+                  },
+                  (error) => {
+                    expect(error).toEqual(`Server-side error: ${BAD_REQUEST} - ${statusText} ${errMsg}`);
+            });
+
+            const url = baseUrl + '/Values/' + input;
+            const request = httpMock.expectOne({ method: 'get', url: url });
+            expect(request.request.method).toEqual('GET', url);
+            request.flush(errMsg, { status: BAD_REQUEST, statusText: statusText });
+          });
 
     });
 });

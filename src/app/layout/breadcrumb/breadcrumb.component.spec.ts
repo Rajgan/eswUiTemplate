@@ -4,24 +4,41 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BreadcrumbComponent } from './breadcrumb.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, Routes } from '@angular/router';
 import { KeyValuePair } from '../../shared/models/keyvaluepair';
+import { Component } from '@angular/core';
+
+@Component({ template: '' })
+class TestComponent {
+}
 
 describe('Component: BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
   let fixture: ComponentFixture<BreadcrumbComponent>;
   let router: Router;
   let translate: TranslateService;
+  const routes: Routes = [
+    {
+      path: 'styleGuide',
+      loadChildren: 'app/style-guide/style-guide.module#StyleGuideModule'
+      // styleguide is lazy loaded
+    },
+    { path: 'home/test/:id', component: TestComponent },
+    { path: 'test/tester', component: TestComponent },
+    { path: 'styles', component: TestComponent },
+    { path: '**', redirectTo: ''}
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(routes),
         TranslateModule.forRoot(),
       ],
       declarations: [
-        BreadcrumbComponent
+        BreadcrumbComponent,
+        TestComponent
       ]
     })
     .compileComponents();
