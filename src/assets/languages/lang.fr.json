@@ -5,7 +5,8 @@
       "styleguide": "Guide de style",
       "preferences": "Préférences",
       "logoff": "Déconnexion"
-    }
+    },
+    "apptitle": "Collection ID"
   },
   "footer": {
     "copyright": "Copyright"

@@ -32,7 +32,12 @@
     li {
       margin-right:0;
       margin-left:0;
-
+      div {
+        padding-top: 13px;
+        color: $color-header-text;
+        padding-bottom: 13px;
+        font-size:0.9em;
+      }
       a {
         border-bottom: 4px solid $color-header-bg;
         padding-bottom: 13px;
@@ -79,11 +84,11 @@
 }
 
 #navbar-icon {
-  width: 150px;
+  width: 200px;
   background-size: 75%;
   background-repeat: no-repeat;
-  background-position: 15px 15px;
-  background-image: url("../assets/eshopworld_white.svg");
+  background-position: 15px 10px;
+  background-image: url("../assets/eshopworld_logo.svg");
 }
 
 .breadcrumb-top {

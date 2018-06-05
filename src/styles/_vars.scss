@@ -1,19 +1,19 @@
 @import "_colors";
 
-$font-stack: 'Source Sans Pro', sans-serif;
+$font-stack: 'Open Sans';
 
-$theme-main: $text-darkest;
+$theme-main: $text-dark;
 
 $radius:            8px;
 
 // App header
-$color-header-bg: $theme-main;
-$color-header-tabhover: $text-darkest-offset;
+$color-header-bg: $white;
+$color-header-tabhover: $text-verylight;
 $color-header-tabopen:$text-dark-offset;
 $color-header-logobg: none;
 $color-header-logo: $brand-red;
 $color-header-selectedlink: $brand-red;
-$color-header-text: $white;
+$color-header-text: $text-light;
 $color-header-tabbg: $brand-red;
 
 // App breadcrumb

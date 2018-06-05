@@ -6,11 +6,14 @@
 
   <ul class="nav navbar-nav main-nav">
     <li [ngClass]="{'active': router.url.toString().indexOf('/styleGuide')>-1 }">
+      <div>{{ 'header.apptitle' | translate }}</div>
+    </li>
+    <li [ngClass]="{'active': router.url.toString().indexOf('/styleGuide')>-1 }">
       <a  href="javascript:;" [routerLink]="['/styleGuide']">{{ 'header.account.styleguide' | translate }}</a>
     </li>
   </ul>
 
-  <ul class="nav navbar-nav navbar-right">
+  <!-- <ul class="nav navbar-nav navbar-right">
 
     <li eswAuthHide><a href="javascript:;" (click)="login()">Login</a></li>
     <li class="dropdown" eswDropdown eswAuthShow>
@@ -24,5 +27,5 @@
         <li role="menuitem"><a href="javascript:;" (click)="logout()"> <i class="fa fa-sign-out margin-right-xs"></i> {{ 'header.account.logoff' | translate }} </a></li>
       </ul>
     </li>
-  </ul>
+  </ul> -->
 </nav>
